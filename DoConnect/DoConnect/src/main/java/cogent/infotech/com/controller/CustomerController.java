@@ -11,43 +11,123 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import cogent.infotech.com.service.CustomerService;
+import cogent.infotech.com.service.CustomerServiceImpl;
 import cogent.infotech.com.entity.*;
 
 @RestController
 public class CustomerController {
 	
 	@Autowired
-	private Service customerService;
+	private CustomerServiceImpl customerService;
 	
-	@GetMapping("/")
-	public void home() {
-		customerService.home();
-	}
+//	@GetMapping("/")
+//	public void home() {
+//		customerService.home();
+//	}
 	
 	@PostMapping("/user/adduser")
 	public void addUser(@Validated @RequestBody User user) {
 		customerService.addUser(user);
 	}
 	
-	@PostMapping("/updateuser")
+	@PostMapping("/user/updateuser")
 	public void updateUser(@Validated @RequestBody User user) {
-		customerService.updateUser();
+		customerService.updateUser(user);
 	}
 	
-	@GetMapping("/getbylogin")
-	public List<User> getByLogin(@Validated @RequestBody String login) {
-		return customerService.getByLogin(login);
+//	@GetMapping("/user/getlogin")
+//	public List<String> getByLogin(@Validated @RequestBody User user) {
+//		return customerService.getLogin(user);
+//	}
+//	
+//	@GetMapping("/user/getbyusername")
+//	public List<User> getByUsername(@Validated @RequestBody String name) {
+//		return customerService.getAllUsersByName(name);
+//	}
+//	
+//	@GetMapping("/user/getallusers")
+//	public List<User> getAllCustomer() {
+//		return customerService.getAllUsers();
+//	}
+//	
+//	@GetMapping("/user/getallusersbytype")
+//	public List<User> getAllCustomer(@Validated @RequestBody String userType) {
+//		return customerService.getAllUsersByUserType(userType);
+//	}
+//	
+	@DeleteMapping("/user/deletebyid")
+	public void deleteUserById(@Validated @RequestBody int id) {
+		customerService.deleteById(id);
 	}
 	
-	@GetMapping("/getbyusername")
-	public List<User> getByUsername(@Validated @RequestBody String username) {
-		return customerService.getByUsername(username);
+	@PostMapping("/question/addquestion")
+	public void addQuestion(@Validated @RequestBody Question question) {
+		customerService.addQuestion(question);
 	}
 	
-	@GetMapping("/getallcustomer")
-	public List<User> getAllCustomer() {
-		return customerService.getAllCustomer();
+	@PostMapping("/question/updatequestion")
+	public void updateQuestion(@Validated @RequestBody Question question) {
+		customerService.updateQuestion(question);
+	}
+	
+	@GetMapping("/question/getallquestionsfalse")
+	public List<Question> getAllQuestionsFalse() {
+		return customerService.getAllQuestionsFalse();
+	}
+	
+	@GetMapping("/question/getallquestions")
+	public List<Question> getAllQuestions() {
+		return customerService.getAllQuestions();
+	}
+	
+	@GetMapping("/question/getallquestionsbytopic")
+	public List<Question> getAllQuestionsByTopic(@Validated @RequestBody String questionTopic) {
+		return customerService.getAllQuestionsByTopic(questionTopic);
+	}
+	
+	@DeleteMapping("/question/deletebyid")
+	public void deleteQuestionById(@Validated @RequestBody int id) {
+		customerService.deleteQuestionById(id);
+	}
+	
+	@PostMapping("/answer/addanswer")
+	public void addAnswer(@Validated @RequestBody Answer answer) {
+		customerService.addAnswer(answer);
+	}
+	
+	@PostMapping("/answer/updatequestion")
+	public void updateAnswer(@Validated @RequestBody Answer answer) {
+		customerService.updateAnswer(answer);
+	}
+	
+	@GetMapping("/answer/getanswerbyid")
+	public List<Answer> getAllAnswersById(@Validated @RequestBody int id) {
+		return customerService.getAllAnswersById(id);
+	}
+	
+	@GetMapping("/answer/getallanswersbyquestionid")
+	public List<Answer> getAllAnswersByQuestionId(@Validated @RequestBody int id) {
+		return customerService.getAllAnswersByQuestionId(id);
+	}
+	
+	@DeleteMapping("/answer/deletebyid")
+	public void deleteAnswerById(@Validated @RequestBody int id) {
+		customerService.deleteAnswerById(id);
+	}
+	
+	@PostMapping("/chat/addchat")
+	public void addChat(@Validated @RequestBody Chat chat) {
+		customerService.addChat(chat);
+	}
+	
+	@GetMapping("/chat/getallchats")
+	public void getAllChats() {
+		customerService.getAllChat();
+	}
+	
+	@DeleteMapping("/chat/deletebyid")
+	public void deleteChatById(@Validated @RequestBody int id) {
+		customerService.deleteChatById(id);
 	}
 
 }

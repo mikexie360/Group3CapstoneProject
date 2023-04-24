@@ -7,6 +7,9 @@ import cogent.infotech.com.entity.User;
 
 public interface UserRepository extends JpaRepository<User, Integer>, CrudRepository<User, Integer>{
 
-	User findByUsername(String name);
-
+	User findByUsername(String username);
+	User findByUserType(String userType);
+//	User findByName(String name);
+//	boolean verifyLogin(User user);
+	
 }

@@ -7,7 +7,12 @@ import cogent.infotech.com.entity.*;
 
 public interface QuestionService {
 	
-	public void createUser(User user);
-	public List<User> getUsers();
+	public List<Question> getAllQuestions();
+	public List<Question> getAllQuestionsFalse();
+	public void addQuestion(Question question);
+	public void updateQuestion(Question question);
+	public void deleteQuestionById(int id);
+	public List<Question> getAllQuestionsById(int id);
+	public List<Question> getAllQuestionsByTopic(String topic);
 
 }

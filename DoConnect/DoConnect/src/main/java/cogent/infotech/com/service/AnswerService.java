@@ -13,6 +13,6 @@ public interface AnswerService {
 	public void addAnswer(Answer answer);
 	public void updateAnswer(Answer answer);
 	public void deleteAnswerById(int id);
-	public void deleteAnswerByQuestionId(int questionid);
+	public List<Answer> getAllAnswersByQuestionId(int questionid);
 
 }

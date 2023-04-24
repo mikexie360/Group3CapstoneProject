@@ -6,5 +6,7 @@ import { Component } from '@angular/core';
   styleUrls: ['./user-sign-up.component.css']
 })
 export class UserSignUpComponent {
+  onUserSignUp(event:any){
 
+  }
 }

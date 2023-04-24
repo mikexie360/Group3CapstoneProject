@@ -33,7 +33,7 @@ public class AnswerController {
 	
 	@DeleteMapping("/deleteanswerbyid")
 	public void deleteAnswerById(@Validated @RequestBody int id) {
-		return answerService.deleteAnswerById(id);
+		answerService.deleteAnswerById(id);
 	}
 	
 	@GetMapping("/getallanswers")

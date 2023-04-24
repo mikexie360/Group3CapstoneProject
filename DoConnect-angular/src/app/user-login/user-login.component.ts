@@ -6,5 +6,7 @@ import { Component } from '@angular/core';
   styleUrls: ['./user-login.component.css']
 })
 export class UserLoginComponent {
+  onUserLogin(event:any){
 
+  }
 }

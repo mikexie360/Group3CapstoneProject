@@ -39,4 +39,6 @@ public class Question {
 	@OneToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name="qapproved_by" , referencedColumnName="id")
 	private User qapproved_by;
+	
+	
 }

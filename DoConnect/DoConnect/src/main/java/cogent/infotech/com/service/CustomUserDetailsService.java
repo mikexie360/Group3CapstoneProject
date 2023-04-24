@@ -12,7 +12,7 @@ import cogent.infotech.com.repository.UserRepository;
 import java.util.*;
 
 @Service
-public class CustomerUserDetailsService implements UserDetailsService {
+public class CustomUserDetailsService implements UserDetailsService {
 	
 	@Autowired
 	private UserRepository repository;
@@ -20,7 +20,7 @@ public class CustomerUserDetailsService implements UserDetailsService {
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 		User user = repository.findByUsername(username);
-		Session.setAuth(user.getUserType());
+		// Session.setAuth(user.getUserType());
 		return new org.springframework.security.core.userdetails.User(user.getUsername(), user.getPassword(), new ArrayList<>());
 	}
 

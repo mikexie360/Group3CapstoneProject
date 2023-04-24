@@ -19,7 +19,7 @@ public class Answer {
 	private String description_answer;
 	private String img_src;
 	private String status;
-	private String datatime;
+	private String datetime;
 	
 	@ManyToOne
 	@JoinColumn(name="question_id", nullable=false)

@@ -33,27 +33,27 @@ public class QuestionController {
 	
 	@DeleteMapping("/deletequestionbyid")
 	public void deleteQuestionById(@Validated @RequestBody int id) {
-		return questionService.deleteQuestionById(id);
+		questionService.deleteQuestionById(id);
 	}
 	
-	@GetMapping("/getallquestion")
-	public List<Question> getAllQuestion() {
-		return questionService.getAllQuestion();
+	@GetMapping("/getallquestions")
+	public List<Question> getAllQuestions() {
+		return questionService.getAllQuestions();
 	}
 	
-	@GetMapping("/getallquestionfalse")
-	public List<Question> getAllQuestionFalse() {
-		return questionService.getAllQuestionFalse();
+	@GetMapping("/getallquestionsfalse")
+	public List<Question> getAllQuestionsFalse() {
+		return questionService.getAllQuestionsFalse();
 	}
 	
-	@GetMapping("/getallquestionbytopic")
-	public List<Question> getAllQuestionByTopic(@Validated @RequestBody String topic) {
-		return questionService.getAllQuestionByTopic(topic);
+	@GetMapping("/getallquestionsbytopic")
+	public List<Question> getAllQuestionsByTopic(@Validated @RequestBody String topic) {
+		return questionService.getAllQuestionsByTopic(topic);
 	}
 	
-	@GetMapping("/getallquestionbyid")
-	public List<Question> getAllQuestionById(@Validated @RequestBody int id) {
-		return questionService.getAllQuestionById(id);
+	@GetMapping("/getallquestionsbyid")
+	public List<Question> getAllQuestionsById(@Validated @RequestBody int id) {
+		return questionService.getAllQuestionsById(id);
 	}
 
 }

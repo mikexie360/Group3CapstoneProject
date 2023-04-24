@@ -15,15 +15,58 @@ public class UserServiceImpl implements UserService{
 
 	@Autowired
 	private UserRepository userRepository;
+	
+	@Override
+	public void home() {
+		System.out.println("This is the Homepage!");
+	}
 
 	@Override
-	public void createUser(User user) {
+	public void addUser(User user) {
 		userRepository.save(user);
 	}
 
 	@Override
-	public List<User> getUsers() {
+	public void addNewUser(User user) {
+		userRepository.save(user);
+	}
+	
+	@Override
+	public void updateUser(User user) {
+		userRepository.save(user);
+	}
+	
+	@Override
+	public List<User> getAllUsers() {
 		return (List)userRepository.findAll();
 	}
+	
+	@Override
+	public List<String> getLogin(User user) {
+		List<String> credentials = new ArrayList<String>();
+		credentials.add(user.getUsername());
+		credentials.add(user.getPassword());
+		return credentials;
+	}
+	
+//	@Override
+//	public boolean userLoginVerify(User user) {
+//		return userRepository.verifyLogin(user);
+//	}
+//	
+//	@Override
+//	public Optional<User> getAllUsersById(int id) {
+//		return (Optional)userRepository.findById(id);
+//	}
+//	
+//	@Override
+//	public List<User> getAllUsersByName(String name) {
+//		return (List)userRepository.findByName(name);
+//	}
+//	
+//	@Override
+//	public List<User> getAllUsersByUserType(String userType) {
+//		return (List)userRepository.findByName(userType);
+//	}
 
 }
