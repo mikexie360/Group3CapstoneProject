@@ -23,36 +23,43 @@ public class AnswerController {
 	private AnswerService answerService;
 	
 	@PostMapping("/addanswer")
+	@PreAuthorize("hasRole('user') || hasRole('admin')")
 	public void addAnswer(@Validated @RequestBody Answer answer) {
 		answerService.addAnswer(answer);
 	}
 	
 	@PostMapping("/updateanswer")
+	@PreAuthorize("hasRole('user') || hasRole('admin')")
 	public void updateAnswer(@Validated @RequestBody Answer answer) {
 		answerService.updateAnswer(answer);
 	}
 	
 	@DeleteMapping("/deleteanswerbyid")
+	@PreAuthorize("hasRole('admin')")
 	public void deleteAnswerById(@Validated @RequestBody int id) {
 		answerService.deleteAnswerById(id);
 	}
 	
 	@GetMapping("/getallanswers")
+	@PreAuthorize("hasRole('user') || hasRole('admin')")
 	public List<Answer> getAllAnswers() {
 		return answerService.getAllAnswers();
 	}
 	
 	@GetMapping("/getallanswerfalse")
+	@PreAuthorize("hasRole('user') || hasRole('admin')")
 	public List<Answer> getAllAnswersFalse() {
 		return answerService.getAllAnswersFalse();
 	}
 	
 	@GetMapping("/getallanswerbyquestionid")
+	@PreAuthorize("hasRole('user') || hasRole('admin')")
 	public List<Answer> getAllAnswersByQuestionId(@Validated @RequestBody int questionid) {
 		return answerService.getAllAnswersByQuestionId(questionid);
 	}
 	
 	@GetMapping("/getallanswerbyid")
+	@PreAuthorize("hasRole('user') || hasRole('admin')")
 	public List<Answer> getAllAnswersById(@Validated @RequestBody int id) {
 		return answerService.getAllAnswersById(id);
 	}

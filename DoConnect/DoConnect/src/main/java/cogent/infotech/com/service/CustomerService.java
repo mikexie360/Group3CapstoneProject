@@ -28,10 +28,10 @@ public interface CustomerService {
 	public void home();
 	public void addNewUser(User user);
 	public void deleteById(int id);
-//	public boolean userLoginVerify(User user);
-//	public List<String> getLogin(User user);
-//	public Optional<User> getAllUsersById(int id);
-//	public List<User> getAllUsersByName(String name);
-//	public List<User> getAllUsersByUserType(String userType);
+	public boolean userLoginVerify(User user);
+	public List<String> getLogin(User user);
+	public Optional<User> getAllUsersById(int id);
+	public List<User> getAllUsersByName(String name);
+	public List<User> getAllUsersByUserType(String userType);
 
 }

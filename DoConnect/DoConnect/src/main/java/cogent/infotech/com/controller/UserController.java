@@ -21,12 +21,6 @@ public class UserController {
 	@Autowired
 	private UserServiceImpl userService;
 	
-//	@GetMapping("/")
-//	public void home() {
-//		userService.home();
-//	}
-	
-	
 	@PostMapping("/adduser")
 	@PreAuthorize("hasRole('user') || hasRole('admin')")
 	public void addUser(@Validated @RequestBody User user) {
@@ -34,43 +28,51 @@ public class UserController {
 	}
 	
 	@PostMapping("/addnewuser")
+	@PreAuthorize("true")
 	public void addNewUser(@Validated @RequestBody User user) {
 		userService.addNewUser(user);
 	}
 	
 	@PostMapping("/updateuser")
+	@PreAuthorize("hasRole('user') || hasRole('admin')")
 	public void updateUser(@Validated @RequestBody User user) {
 		userService.updateUser(user);
 	}
 	
-	@GetMapping("/getlogin")
+/*	@GetMapping("/getlogin")
+	@PreAuthorize("true")
 	public List<String> getLogin(@Validated @RequestBody User user) {
 		return userService.getLogin(user);
 	}
 	
-//	@GetMapping("/userloginverify")
-//	public boolean userLoginVerify(@Validated @RequestBody User user) {
-//		return userService.userLoginVerify(user);
-//	}
-//	
-//	@GetMapping("/getallusers")
-//	public List<User> getAllUsers() {
-//		return userService.getAllUsers();
-//	}
-//	
-//	@GetMapping("/getallusersbyid")
-//	public Optional<User> getAllUsersById(@Validated @RequestBody int id) {
-//		return userService.getAllUsersById(id);
-//	}
-//	
-//	@GetMapping("/getallusersbyname")
-//	public List<User> getAllUsersByName(@Validated @RequestBody String name) {
-//		return userService.getAllUsersByName(name);
-//	}
-//	
-//	@GetMapping("/getallusersbytype")
-//	public List<User> getAllUsersByUserType(@Validated @RequestBody String userType) {
-//		return userService.getAllUsersByUserType(userType);
-//	}
+	@GetMapping("/userloginverify")
+	@PreAuthorize("true")
+	public boolean userLoginVerify(@Validated @RequestBody User user) {
+		return userService.userLoginVerify(user);
+	}*/
+	
+	@GetMapping("/getallusers")
+	@PreAuthorize("hasRole('user') || hasRole('admin')")
+	public List<User> getAllUsers() {
+		return userService.getAllUsers();
+	}
+	
+	@GetMapping("/getallusersbyid")
+	@PreAuthorize("hasRole('user') || hasRole('admin')")
+	public Optional<User> getAllUsersById(@Validated @RequestBody int id) {
+		return userService.getAllUsersById(id);
+	}
+	
+	@GetMapping("/getallusersbyname")
+	@PreAuthorize("hasRole('user') || hasRole('admin')")
+	public List<User> getAllUsersByName(@Validated @RequestBody String name) {
+		return userService.getAllUsersByName(name);
+	}
+	
+	@GetMapping("/getallusersbytype")
+	@PreAuthorize("hasRole('user') || hasRole('admin')")
+	public List<User> getAllUsersByUserType(@Validated @RequestBody String userType) {
+		return userService.getAllUsersByUserType(userType);
+	}
 
 }

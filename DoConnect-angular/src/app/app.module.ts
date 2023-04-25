@@ -9,6 +9,8 @@ import {MatCardModule} from '@angular/material/card';
 import {MatGridListModule} from '@angular/material/grid-list';
 import {MatSidenavModule} from '@angular/material/sidenav';
 import {MatFormFieldModule} from '@angular/material/form-field';
+//import { HttpModule } from '@angular/http';
+import { HttpClientModule, HttpClient } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -59,7 +61,7 @@ import { AdminRegisterAndLoginComponent } from './admin-register-and-login/admin
     MatToolbarModule,
     MatIconModule, MatButtonModule,
     MatCardModule,MatGridListModule,MatSidenavModule,
-    MatFormFieldModule,
+    MatFormFieldModule,HttpClientModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

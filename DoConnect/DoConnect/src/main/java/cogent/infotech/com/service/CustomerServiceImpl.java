@@ -130,32 +130,32 @@ public class CustomerServiceImpl implements CustomerService {
 		return (List)userRepository.findAll();
 	}
 	
-//	@Override
-//	public List<String> getLogin(User user) {
-//		List<String> credentials = new ArrayList<String>();
-//		credentials.add(user.getUsername());
-//		credentials.add(user.getPassword());
-//		return credentials;
-//	}
+	@Override
+	public List<String> getLogin(User user) {
+		List<String> credentials = new ArrayList<String>();
+		credentials.add(user.getUsername());
+		credentials.add(user.getPassword());
+		return credentials;
+	}
 	
-//	@Override
-//	public boolean userLoginVerify(User user) {
-//		return userRepository.verifyLogin(user);
-//	}
-//	
-//	@Override
-//	public Optional<User> getAllUsersById(int id) {
-//		return (Optional)userRepository.findById(id);
-//	}
-//	
-//	@Override
-//	public List<User> getAllUsersByName(String name) {
-//		return (List)userRepository.findByName(name);
-//	}
-//	
-//	@Override
-//	public List<User> getAllUsersByUserType(String userType) {
-//		return (List)userRepository.findByName(userType);
-//	}
+	@Override
+	public boolean userLoginVerify(User user) {
+		return userRepository.verifyLogin(user);
+	}
+	
+	@Override
+	public Optional<User> getAllUsersById(int id) {
+		return (Optional)userRepository.findById(id);
+	}
+	
+	@Override
+	public List<User> getAllUsersByName(String name) {
+		return (List)userRepository.findByName(name);
+	}
+	
+	@Override
+	public List<User> getAllUsersByUserType(String userType) {
+		return (List)userRepository.findByName(userType);
+	}
 
 }

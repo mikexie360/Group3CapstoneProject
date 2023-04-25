@@ -16,6 +16,14 @@ export class UserService{
     private deleteUrl="http://localhost:8080/api/User/delete";
 
     private signupUserUrl = "http://localhost:8080/adduser";
+    private updateUserUrl = "http://localhost:8080/updateuser";
+    private getLoginUrl = "http://localhost:8080/getlogin";
+    private userLoginVerifyUrl = "http://localhost:8080/userloginverify";
+    private getallusersUrl = "http://localhost:8080/getallusers";
+    private getallusersbyidUrl = "http://localhost:8080/getallusersbyid";
+    private getallusersbyname = "http://localhost:8080/getallusersbyname";
+    private getallusersbytype = "http://localhost:8080/getallusersbytype";
+
 
     constructor(private http:HttpClient){
 
@@ -38,6 +46,6 @@ export class UserService{
     }
 
     signupUser(user:User):Observable<User>{
-        return this.http.post<User>(`${this.putUrl}`,user);
+        return this.http.post<User>(`${this.signupUserUrl}`,user);
     }
 }

@@ -5,18 +5,18 @@
     <mat-card-content>
       <form novalidate #adminSignupform="ngForm">
         <label>Admin Username: </label>
-        <input class="form-control" type="text" placeholder="UserName" required #adminUsername>
+        <input class="form-control" type="text" placeholder="UserName" required #Username>
         <br>
         <label>Admin Password: </label>
-        <input class="form-control" type="password" placeholder="Password" required #adminPassword>
+        <input class="form-control" type="password" placeholder="Password" required #Password>
         <br>
         <label>Admin EmailID: </label>
-        <input class="form-control" type="email" placeholder="Email" required #AdminEmail>
+        <input class="form-control" type="email" placeholder="Email" required #Email>
         <br>
         <label>Admin Name: </label>
-        <input class="form-control" type="text" placeholder="Name" required #AdminName>
+        <input class="form-control" type="text" placeholder="Name" required #Name>
         <br>
-        <button (click)="onAdminSignUp($event)" class="btn btn- float-end btn btn-warning">Sign Up</button>
+        <button (click)="onAdminSignUp($event, Username.value, Password.value, Email.value, Name.value)" class="btn btn- float-end btn btn-warning">Sign Up</button>
       </form>
     </mat-card-content>
 </mat-card>

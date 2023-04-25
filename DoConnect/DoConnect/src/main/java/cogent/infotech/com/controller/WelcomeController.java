@@ -26,7 +26,7 @@ public class WelcomeController {
     }
 
     @PostMapping("/authenticate")
-    @PreAuthorize(true)
+    @PreAuthorize("true")
     public String generateToken(@RequestBody AuthRequest authRequest) throws Exception {
         try {
             authenticationManager.authenticate(

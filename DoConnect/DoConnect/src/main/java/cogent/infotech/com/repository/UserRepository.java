@@ -9,7 +9,7 @@ public interface UserRepository extends JpaRepository<User, Integer>, CrudReposi
 
 	User findByUsername(String username);
 	User findByUserType(String userType);
-//	User findByName(String name);
-//	boolean verifyLogin(User user);
+	User findByName(String name);
+	boolean verifyLogin(User user);
 	
 }

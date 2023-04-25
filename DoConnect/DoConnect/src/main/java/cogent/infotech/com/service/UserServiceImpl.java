@@ -15,11 +15,6 @@ public class UserServiceImpl implements UserService{
 
 	@Autowired
 	private UserRepository userRepository;
-	
-	@Override
-	public void home() {
-		System.out.println("This is the Homepage!");
-	}
 
 	@Override
 	public void addUser(User user) {
@@ -53,20 +48,20 @@ public class UserServiceImpl implements UserService{
 //	public boolean userLoginVerify(User user) {
 //		return userRepository.verifyLogin(user);
 //	}
-//	
-//	@Override
-//	public Optional<User> getAllUsersById(int id) {
-//		return (Optional)userRepository.findById(id);
-//	}
-//	
-//	@Override
-//	public List<User> getAllUsersByName(String name) {
-//		return (List)userRepository.findByName(name);
-//	}
-//	
-//	@Override
-//	public List<User> getAllUsersByUserType(String userType) {
-//		return (List)userRepository.findByName(userType);
-//	}
+	
+	@Override
+	public Optional<User> getAllUsersById(int id) {
+		return (Optional)userRepository.findById(id);
+	}
+	
+	@Override
+	public List<User> getAllUsersByName(String name) {
+		return (List)userRepository.findByName(name);
+	}
+	
+	@Override
+	public List<User> getAllUsersByUserType(String userType) {
+		return (List)userRepository.findByName(userType);
+	}
 
 }

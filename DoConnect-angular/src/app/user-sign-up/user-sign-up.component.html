@@ -16,7 +16,7 @@
         <label>Name: </label>
         <input class="form-control" type="text" placeholder="Name" required #Name>
         <br>
-        <button (click)="onUserSignUp($event)" class="btn btn- float-end btn btn-warning">Sign Up</button>
+        <button (click)="onUserSignUp($event, Username.value, Password.value, Email.value, Name.value)" class="btn btn- float-end btn btn-warning">Sign Up</button>
       </form>
     </mat-card-content>
 </mat-card>
