@@ -3,6 +3,7 @@ package cogent.infotech.com.controller;
 import java.util.*;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -25,7 +26,9 @@ public class UserController {
 //		userService.home();
 //	}
 	
+	
 	@PostMapping("/adduser")
+	@PreAuthorize("hasRole('user') || hasRole('admin')")
 	public void addUser(@Validated @RequestBody User user) {
 		userService.addUser(user);
 	}

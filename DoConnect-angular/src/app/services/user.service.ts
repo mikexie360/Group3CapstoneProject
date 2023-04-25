@@ -15,6 +15,8 @@ export class UserService{
     private putUrl="http://localhost:8080/api/User/put";
     private deleteUrl="http://localhost:8080/api/User/delete";
 
+    private signupUserUrl = "http://localhost:8080/adduser";
+
     constructor(private http:HttpClient){
 
     }
@@ -35,7 +37,7 @@ export class UserService{
         return this.http.put<User>(`${this.putUrl}`,user);
     }
 
-    // adduser(user:User):Observable<User>{
-    //     return add
-    // }
+    signupUser(user:User):Observable<User>{
+        return this.http.post<User>(`${this.putUrl}`,user);
+    }
 }
