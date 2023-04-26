@@ -7,6 +7,6 @@ import cogent.infotech.com.entity.Chat;
 import cogent.infotech.com.entity.User;
 public interface ChatRepository extends JpaRepository<Chat, Integer>{
 	
-	List<Chat> findAllByTo_User(String name);
+	List<Chat> findAllByTouser(String name);
 
 }

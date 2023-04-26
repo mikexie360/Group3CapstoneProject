@@ -41,8 +41,8 @@ public class CustomerServiceImpl implements CustomerService {
 	}
 	
 	@Override
-	public List<Chat> getAllChatByName(String name) {
-		return chatRepository.findAllByTo_User(name);
+	public List<Chat> getAllChatByTouser(String name) {
+		return chatRepository.findAllByTouser(name);
 	}
 
 	@Override
@@ -135,18 +135,18 @@ public class CustomerServiceImpl implements CustomerService {
 		return (List)userRepository.findAll();
 	}
 	
-	@Override
-	public List<String> getLogin(User user) {
-		List<String> credentials = new ArrayList<String>();
-		credentials.add(user.getUsername());
-		credentials.add(user.getPassword());
-		return credentials;
-	}
+//	@Override
+//	public List<String> getLogin(User user) {
+//		List<String> credentials = new ArrayList<String>();
+//		credentials.add(user.getUsername());
+//		credentials.add(user.getPassword());
+//		return credentials;
+//	}
 	
-	@Override
-	public boolean userLoginVerify(User user) {
-		return userRepository.verifyLogin(user);
-	}
+//	@Override
+//	public boolean userLoginVerify(User user) {
+//		return userRepository.verifyLogin(user);
+//	}
 	
 	@Override
 	public Optional<User> getAllUsersById(int id) {

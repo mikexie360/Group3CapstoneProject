@@ -11,7 +11,7 @@ public interface UserService {
 	public void updateUser(User user);
 	public List<User> getAllUsers();
 	public void addNewUser(User user);
-	public List<String> getLogin(User user);
+	// public List<String> getLogin(User user);
 //	public boolean userLoginVerify(User user);
 	public Optional<User> getAllUsersById(int id);
 	public List<User> getAllUsersByName(String name);

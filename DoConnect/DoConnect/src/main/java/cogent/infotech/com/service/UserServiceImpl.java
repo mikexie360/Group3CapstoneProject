@@ -36,13 +36,13 @@ public class UserServiceImpl implements UserService{
 		return (List)userRepository.findAll();
 	}
 	
-	@Override
-	public List<String> getLogin(User user) {
-		List<String> credentials = new ArrayList<String>();
-		credentials.add(user.getUsername());
-		credentials.add(user.getPassword());
-		return credentials;
-	}
+//	@Override
+//	public List<String> getLogin(User user) {
+//		List<String> credentials = new ArrayList<String>();
+//		credentials.add(user.getUsername());
+//		credentials.add(user.getPassword());
+//		return credentials;
+//	}
 	
 //	@Override
 //	public boolean userLoginVerify(User user) {

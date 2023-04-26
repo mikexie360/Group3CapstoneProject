@@ -141,10 +141,10 @@ public class CustomerController {
 		customerService.getAllChat();
 	}
 	
-	@GetMapping("/chat/getallchatsbyname")
+	@GetMapping("/chat/getallchatsbytouser")
 	@PreAuthorize("hasRole('user') || hasRole('admin')")
-	public void getAllChatsByName(@Validated @RequestBody String name) {
-		customerService.getAllChatByName(name);
+	public void getAllChatsByName(@Validated @RequestBody String touser) {
+		customerService.getAllChatByTouser(touser);
 	}
 	
 	@DeleteMapping("/chat/deletebyid")

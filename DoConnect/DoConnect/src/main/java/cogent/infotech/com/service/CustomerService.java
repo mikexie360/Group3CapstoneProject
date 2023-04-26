@@ -10,7 +10,7 @@ public interface CustomerService {
 	public void addChat(Chat chat);
 	public void deleteChatById(int id);
 	public List<Chat> getAllChat();
-	public List<Chat> getAllChatByName(String name);
+	public List<Chat> getAllChatByTouser(String name);
 	public void addUser(User user);
 	public void addQuestion(Question question);
 	public void updateQuestion(Question question);
@@ -29,8 +29,8 @@ public interface CustomerService {
 	public void home();
 	public void addNewUser(User user);
 	public void deleteById(int id);
-	public boolean userLoginVerify(User user);
-	public List<String> getLogin(User user);
+//	public boolean userLoginVerify(User user);
+//	public List<String> getLogin(User user);
 	public Optional<User> getAllUsersById(int id);
 	public List<User> getAllUsersByName(String name);
 	public List<User> getAllUsersByUserType(String userType);
