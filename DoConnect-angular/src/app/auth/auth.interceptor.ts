@@ -13,7 +13,8 @@ import { Injectable } from '@angular/core';
 
 @Injectable()
 export class AuthInterceptor implements HttpInterceptor {
-  constructor(private userAuthService: UserAuthService,
+  constructor(
+    private userAuthService: UserAuthService,
     private router:Router) {}
 
   intercept(
