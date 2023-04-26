@@ -136,14 +136,15 @@ public class CustomerController {
 	
 	@GetMapping("/chat/getallchats")
 	@PreAuthorize("hasRole('user') || hasRole('admin')")
-	public void getAllChats() {
-		customerService.getAllChat();
+	public List<Chat> getAllChats() {
+		return customerService.getAllChat();
 	}
 	
 	@GetMapping("/chat/getallchatsbytouser")
 	@PreAuthorize("hasRole('user') || hasRole('admin')")
-	public List<Chat> getAllChatsByName(@Validated @RequestBody String touser) {
-		return customerService.getAllChatByTouser(touser);
+	public List<Chat> getAllChatsByName(@Validated @RequestBody Chat chat) {
+		System.out.println(chat.getTouser());
+		return customerService.getAllChatByTouser(chat.getTouser());
 	}
 	
 	@DeleteMapping("/chat/deletebyid")

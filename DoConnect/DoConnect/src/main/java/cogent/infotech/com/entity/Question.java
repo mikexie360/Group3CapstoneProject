@@ -1,6 +1,7 @@
 package cogent.infotech.com.entity;
 
 import java.util.List;
+import java.util.*;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
@@ -15,8 +16,11 @@ import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
+import lombok.Data;
+
 @Entity
 @Table(name ="Question")
+@Data
 public class Question {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
@@ -27,16 +31,16 @@ public class Question {
 	private String status;
 	private String topic;
 	private String title;
-	@OneToMany(mappedBy = "question", fetch=FetchType.EAGER)
-	@JsonIgnore
-	// one question to many answers
-	private List<Answer>answers;
 	
-	@OneToOne(cascade = CascadeType.ALL)
+	@OneToMany(cascade=CascadeType.MERGE, mappedBy = "question")
+	@JsonIgnore
+	private List<Answer> answers = new ArrayList<>();
+	
+	@OneToOne(cascade = CascadeType.MERGE)
 	@JoinColumn(name="qcreated_id" , referencedColumnName="id")
 	private User qcreated_by;
 	
-	@OneToOne(cascade = CascadeType.ALL)
+	@OneToOne(cascade = CascadeType.MERGE)
 	@JoinColumn(name="qapproved_by" , referencedColumnName="id")
 	private User qapproved_by;
 	

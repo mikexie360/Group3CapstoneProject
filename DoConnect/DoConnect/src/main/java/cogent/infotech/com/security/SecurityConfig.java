@@ -39,7 +39,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
     	System.out.println("configure");
-        http.csrf().disable().authorizeRequests().antMatchers("/authenticate", "/adduser", "/answer/**")
+        http.csrf().disable().authorizeRequests().antMatchers("/authenticate", "/adduser")
                 .permitAll().anyRequest().authenticated()
                 .and().exceptionHandling().and().sessionManagement()
                 .sessionCreationPolicy(SessionCreationPolicy.STATELESS);

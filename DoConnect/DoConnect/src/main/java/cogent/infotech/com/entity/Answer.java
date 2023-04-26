@@ -10,8 +10,11 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import lombok.Data;
+
 @Entity
 @Table(name ="Answer")
+@Data
 public class Answer {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
@@ -21,15 +24,15 @@ public class Answer {
 	private String status;
 	private String datetime;
 	
-	@ManyToOne
-	@JoinColumn(name="question_id", nullable=false)
+	@ManyToOne(cascade = CascadeType.MERGE)
+	@JoinColumn(name="question_id" , nullable=false)
 	private Question question;
 	
-	@OneToOne(cascade = CascadeType.ALL)
+	@OneToOne(cascade = CascadeType.MERGE)
 	@JoinColumn(name="aapproved_id" , referencedColumnName="id")
 	private User aapproved_by;
 	
-	@OneToOne(cascade = CascadeType.ALL)
+	@OneToOne(cascade = CascadeType.MERGE)
 	@JoinColumn(name="acreated_id" , referencedColumnName="id")
 	private User acreated_by;
 	
