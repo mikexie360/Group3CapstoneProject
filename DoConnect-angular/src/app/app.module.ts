@@ -10,7 +10,9 @@ import {MatGridListModule} from '@angular/material/grid-list';
 import {MatSidenavModule} from '@angular/material/sidenav';
 import {MatFormFieldModule} from '@angular/material/form-field';
 //import { HttpModule } from '@angular/http';
-import { HttpClientModule, HttpClient } from '@angular/common/http';
+import { HttpClientModule, HttpClient, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { AuthGuard } from './auth/auth.guard';
+
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -32,6 +34,9 @@ import { UserToUserChatComponent } from './user-to-user-chat/user-to-user-chat.c
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AdminRegisterAndLoginComponent } from './admin-register-and-login/admin-register-and-login.component';
+import { UserAuthService } from './services/user-auth.service';
+import { AuthInterceptor } from './auth/auth.interceptor';
+import { UserService } from './services/user.service';
 
 @NgModule({
   declarations: [
@@ -63,7 +68,13 @@ import { AdminRegisterAndLoginComponent } from './admin-register-and-login/admin
     MatCardModule,MatGridListModule,MatSidenavModule,
     MatFormFieldModule,HttpClientModule,
   ],
-  providers: [],
+  providers: [AuthGuard,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass:AuthInterceptor,
+      multi:true
+    },
+    UserService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

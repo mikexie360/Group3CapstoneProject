@@ -1,16 +1,16 @@
 <mat-card class="example-card">
     <mat-card-header>
-      <mat-card-title>User Login</mat-card-title>
+      <mat-card-title>Login</mat-card-title>
     </mat-card-header>
     <mat-card-content>
-      <form novalidate #adminSignupform="ngForm">
+      <form novalidate #loginForm="ngForm" (ngSubmit)="login(loginForm, userName.value, password.value)">
         <label>Username: </label>
-        <input class="form-control" type="text" placeholder="Username" required #Username>
+        <input class="form-control" type="text" placeholder="Username" name="userName" id="userName" ngModel required #userName="ngModel">
         <br>
         <label>Password: </label>
-        <input class="form-control" type="password" placeholder="Password" required #Password>
+        <input class="form-control" type="password" placeholder="Password" name="password" id="password" ngModel required #password>
         <br>
-        <button (click)="onUserLogin($event)" class="btn btn- float-end btn btn-warning">Sign Up</button>
+        <input type="submit" value="Login" class="btn btn- float-end btn btn-warning">
       </form>
     </mat-card-content>
 </mat-card>
