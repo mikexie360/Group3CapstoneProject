@@ -5,7 +5,6 @@ import { UserAuthService } from '../services/user-auth.service';
 import { UserService } from '../services/user.service';
 import { HttpErrorResponse } from '@angular/common/http';
 
-
 @Component({
   selector: 'app-user-login',
   templateUrl: './user-login.component.html',
@@ -20,11 +19,10 @@ export class UserLoginComponent implements OnInit{
   ngOnInit(): void {}
 
   login(loginForm:NgForm, username:any, password:any){
-    alert(username);
-    alert(password);
+    //alert(username);
+    //alert(password);
     //let raw= JSON.parse('{"userName" : ' +"'"+ username + "'"+","+ '"password"' +":" +"'" + password +"'"+'}');
-    alert(loginForm.value);
-    alert(loginForm.value.password);
+    //console.log(loginForm.value);
     this.userService.loginUser(loginForm.value).subscribe({
       next: (response: any) => {
         // this.userAuthService.setRoles(response.user.userType);
@@ -32,7 +30,17 @@ export class UserLoginComponent implements OnInit{
         //alert("inside response");
         console.log(response);
         this.userAuthService.setToken(response);
-        // const role = response.user.userType;
+
+        // decoding jwt
+        let tokenInfo = this.userAuthService.getDecodedAccessToken(response);
+        console.log(tokenInfo);
+
+        // do another get request with the token to get the role
+        // do a router.navigate to send the user to the correct area of the website.
+
+        // saving to local storage
+        this.userAuthService.setUser(tokenInfo.user);
+        
         // if (role === 'admin') {
         //   alert("role is admin")
         //   // this.router.navigate(['/admin']);
@@ -51,3 +59,4 @@ export class UserLoginComponent implements OnInit{
   });
   }
 }
+

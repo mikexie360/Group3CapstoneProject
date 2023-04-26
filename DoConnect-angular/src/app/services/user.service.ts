@@ -16,7 +16,7 @@ export class UserService{
     private putUrl="http://localhost:8080/api/User/put";
     private deleteUrl="http://localhost:8080/api/User/delete";
 
-    private signupUserUrl = "http://localhost:8080/addnewuser";
+    private signupUserUrl = "http://localhost:8080/adduser";
     private authenticateUrl = "http://localhost:8080/authenticate";
 
     private updateUserUrl = "http://localhost:8080/updateuser";
@@ -83,4 +83,6 @@ export class UserService{
         }
         return isMatch;
       }
+
+
 }

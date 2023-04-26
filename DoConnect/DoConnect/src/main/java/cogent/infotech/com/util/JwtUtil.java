@@ -4,8 +4,16 @@ package cogent.infotech.com.util;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
+
+import cogent.infotech.com.entity.JwtResponse;
+import cogent.infotech.com.entity.User;
+import cogent.infotech.com.repository.UserRepository;
+import cogent.infotech.com.service.UserService;
+import cogent.infotech.com.service.UserServiceImpl;
 
 import java.util.Date;
 import java.util.HashMap;
@@ -15,6 +23,11 @@ import java.util.function.Function;
 @Service
 public class JwtUtil {
 
+	private User user;
+	
+	@Autowired
+	private UserRepository userRepo;
+	
     private String secret = "group3";
 
     public String extractUsername(String token) {
@@ -40,6 +53,8 @@ public class JwtUtil {
     
     public String generateToken(String username) {
         Map<String, Object> claims = new HashMap<>();
+        User user = userRepo.findByName(username);
+        claims.put("user", user);
         return createToken(claims, username);
     }
     

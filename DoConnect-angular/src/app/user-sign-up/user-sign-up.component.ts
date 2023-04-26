@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { User } from '../entity/user';
 import { UserService } from '../services/user.service';
+import { NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-user-sign-up',
@@ -21,14 +22,10 @@ export class UserSignUpComponent implements OnInit{
     "",
     ""
   );
-  onUserSignUp(event:any, username:any, password:any, email:any, name:any, userType:any){
-    this.user.name= name;
-    this.user.username = username;
-    this.user.email = email;
-    this.user.password = password;
-    this.user.userType = userType;
+  signup(signUpForm: NgForm){
+    console.log(signUpForm.value);
 
-    this.userService.signupUser(this.user).subscribe((data:User)=>{
+    this.userService.signupUser(signUpForm.value).subscribe((data:User)=>{
       console.log(data);
   });
   };

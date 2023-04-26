@@ -3,26 +3,26 @@
       <mat-card-title>Sign Up</mat-card-title>
     </mat-card-header>
     <mat-card-content>
-      <form novalidate #adminSignupform="ngForm">
+        <form novalidate #signupForm="ngForm" (ngSubmit)="signup(signupForm)">
         <label>Username: </label>
-        <input class="form-control" type="text" placeholder="UserName" required #Username>
+        <input class="form-control" name="username" id="username" type="text" placeholder="UserName" required ngModel #username="ngModel">
         <br>
         <label>Password: </label>
-        <input class="form-control" type="password" placeholder="Password" required #Password>
+        <input class="form-control" name="password" id="password" type="password" placeholder="Password" required ngModel #Password>
         <br>
         <label>EmailID: </label>
-        <input class="form-control" type="email" placeholder="Email" required #Email>
+        <input class="form-control" name="email" id="email" type="email" placeholder="Email" required ngModel #Email>
         <br>
         <label>Name: </label>
-        <input class="form-control" type="text" placeholder="Name" required #Name>
+        <input class="form-control" name="name" id="name" type="text" placeholder="Name" required ngModel #Name>
         <br>
         <label for="userType">Pick a UserType</label>
         <br>
-        <select name="userType" required #UserType>
+        <select class="form-control" placeholder="user" required ngModel #UserType>
             <option value ="user">user</option>
             <option value ="admin">admin</option>
         </select>
-        <button (click)="onUserSignUp($event, Username.value, Password.value, Email.value, Name.value, UserType.value)" class="btn btn- float-end btn btn-warning">Sign Up</button>
+        <input type="submit" value="Sign Up" class="btn btn- float-end btn btn-warning">
       </form>
     </mat-card-content>
 </mat-card>
