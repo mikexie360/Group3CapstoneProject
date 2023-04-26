@@ -22,13 +22,11 @@ public class UserController {
 	private UserServiceImpl userService;
 	
 	@PostMapping("/adduser")
-	@PreAuthorize("hasRole('user') || hasRole('admin')")
 	public void addUser(@Validated @RequestBody User user) {
 		userService.addUser(user);
 	}
 	
 	@PostMapping("/addnewuser")
-	@PreAuthorize("true")
 	public void addNewUser(@Validated @RequestBody User user) {
 		userService.addNewUser(user);
 	}

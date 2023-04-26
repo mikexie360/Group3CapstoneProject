@@ -22,7 +22,6 @@ public class CustomerController {
 	private CustomerServiceImpl customerService;
 	
 	@PostMapping("/user/adduser")
-	@PreAuthorize("hasRole('user') || hasRole('admin')")
 	public void addUser(@Validated @RequestBody User user) {
 		customerService.addUser(user);
 	}
@@ -143,8 +142,8 @@ public class CustomerController {
 	
 	@GetMapping("/chat/getallchatsbytouser")
 	@PreAuthorize("hasRole('user') || hasRole('admin')")
-	public void getAllChatsByName(@Validated @RequestBody String touser) {
-		customerService.getAllChatByTouser(touser);
+	public List<Chat> getAllChatsByName(@Validated @RequestBody String touser) {
+		return customerService.getAllChatByTouser(touser);
 	}
 	
 	@DeleteMapping("/chat/deletebyid")
