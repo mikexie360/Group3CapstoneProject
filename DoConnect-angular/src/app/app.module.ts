@@ -67,6 +67,8 @@ import { UserService } from './services/user.service';
     MatIconModule, MatButtonModule,
     MatCardModule,MatGridListModule,MatSidenavModule,
     MatFormFieldModule,HttpClientModule,
+    MatCardModule
+    
   ],
   providers: [AuthGuard,
     {
