@@ -1,7 +1,8 @@
-import { HttpClient } from "@angular/common/http";
+import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { Observable } from "rxjs";
 import { User } from "../entity/user";
+import { UserAuthService } from "./user-auth.service";
 
 @Injectable({
     providedIn:"root"
@@ -15,7 +16,9 @@ export class UserService{
     private putUrl="http://localhost:8080/api/User/put";
     private deleteUrl="http://localhost:8080/api/User/delete";
 
-    private signupUserUrl = "http://localhost:8080/adduser";
+    private signupUserUrl = "http://localhost:8080/addnewuser";
+    private authenticateUrl = "http://localhost:8080/authenticate";
+
     private updateUserUrl = "http://localhost:8080/updateuser";
     private getLoginUrl = "http://localhost:8080/getlogin";
     private userLoginVerifyUrl = "http://localhost:8080/userloginverify";
@@ -25,27 +28,59 @@ export class UserService{
     private getallusersbytype = "http://localhost:8080/getallusersbytype";
 
 
-    constructor(private http:HttpClient){
+    constructor(private http:HttpClient,
+                private userAuthService: UserAuthService){
 
     }
 
-    getUsers():Observable<User[]>{
-        return this.http.get<User[]>(`${this.getUrl}`);
-    }
+    // getUsers():Observable<User[]>{
+    //     return this.http.get<User[]>(`${this.getUrl}`);
+    // }
 
-    postUser(user:any):Observable<User>{
-        return this.http.post<User>(`${this.postUrl}`, user);
-    }
+    // postUser(user:any):Observable<User>{
+    //     return this.http.post<User>(`${this.postUrl}`, user);
+    // }
 
-    deleteUser(user:User):Observable<User>{
-        return this.http.delete<User>(`${this.deleteUrl}` +"/" + user.id);
-    }
+    // deleteUser(user:User):Observable<User>{
+    //     return this.http.delete<User>(`${this.deleteUrl}` +"/" + user.id);
+    // }
 
-    putUser(user:any):Observable<User>{
-        return this.http.put<User>(`${this.putUrl}`,user);
-    }
+    // putUser(user:any):Observable<User>{
+    //     return this.http.put<User>(`${this.putUrl}`,user);
+    // }
 
     signupUser(user:User):Observable<User>{
         return this.http.post<User>(`${this.signupUserUrl}`,user);
     }
+
+    requestHeader = new HttpHeaders({'No-Auth': 'True',
+        'Content-Type' : 'application/json',
+        'Accept' : '*/*',
+        });
+
+
+    loginUser(loginData:any):Observable<any>{
+        return this.http.post(this.authenticateUrl, loginData,{
+            headers: this.requestHeader,
+            'responseType': 'text'
+        });
+    }
+
+    public roleMatch(allowedRoles:any): boolean {
+        let isMatch:boolean = false;
+        const userRoles: any = this.userAuthService.getRoles();
+        if (userRoles != null && userRoles) {
+        //   for (let i = 0; i < userRoles.length; i++) {
+            for (let j = 0; j < allowedRoles.length; j++) {
+              if (userRoles.userType === allowedRoles[j]) {
+                isMatch = true;
+                return isMatch;
+              } else {
+                return isMatch;
+              }
+            // }
+          }
+        }
+        return isMatch;
+      }
 }

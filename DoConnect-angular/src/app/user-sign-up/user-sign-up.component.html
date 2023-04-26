@@ -1,6 +1,6 @@
 <mat-card class="example-card">
     <mat-card-header>
-      <mat-card-title>User Sign Up</mat-card-title>
+      <mat-card-title>Sign Up</mat-card-title>
     </mat-card-header>
     <mat-card-content>
       <form novalidate #adminSignupform="ngForm">
@@ -16,7 +16,13 @@
         <label>Name: </label>
         <input class="form-control" type="text" placeholder="Name" required #Name>
         <br>
-        <button (click)="onUserSignUp($event, Username.value, Password.value, Email.value, Name.value)" class="btn btn- float-end btn btn-warning">Sign Up</button>
+        <label for="userType">Pick a UserType</label>
+        <br>
+        <select name="userType" required #UserType>
+            <option value ="user">user</option>
+            <option value ="admin">admin</option>
+        </select>
+        <button (click)="onUserSignUp($event, Username.value, Password.value, Email.value, Name.value, UserType.value)" class="btn btn- float-end btn btn-warning">Sign Up</button>
       </form>
     </mat-card-content>
 </mat-card>
