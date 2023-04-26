@@ -39,6 +39,11 @@ public class CustomerServiceImpl implements CustomerService {
 	public List<Chat> getAllChat() {
 		return chatRepository.findAll();
 	}
+	
+	@Override
+	public List<Chat> getAllChatByName(String name) {
+		return chatRepository.findAllByTo_User(name);
+	}
 
 	@Override
 	public void home() {
