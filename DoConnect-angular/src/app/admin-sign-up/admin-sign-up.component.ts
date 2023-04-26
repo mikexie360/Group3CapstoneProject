@@ -19,7 +19,7 @@ export class AdminSignUpComponent implements OnInit{
     "",
     "",
     "",
-    "admin"
+    ""
   );
   onAdminSignUp(event:any, username:any, password:any, email:any, name:any, userType:any){
     this.user.name= name;
