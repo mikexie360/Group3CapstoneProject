@@ -1,0 +1,9 @@
+DoConnect-Frontend-Angular\*
+DoConnect-Frontend-Angular\src
+DoConnect-Frontend-Angular\\src
+DoConnect-Frontend-Angular/*
+
+*.pack
+*.pack
+DoConnect-Frontend-Angular/.angular/cache/15.2.7/angular-webpack/6c86895a3ab506bb6662a9ba54b19f6d300adbc6/0.pack
+DoConnect-Frontend-Angular/.angular/cache/15.2.7/angular-webpack/6c86895a3ab506bb6662a9ba54b19f6d300adbc6/1.pack
