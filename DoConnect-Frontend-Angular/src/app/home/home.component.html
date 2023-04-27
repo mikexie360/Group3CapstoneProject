@@ -1,6 +1,6 @@
 <div class="container text-white">
     <h2 class="text-center py-4">All Questions</h2>
-    <div *ngIf="userType == 'user' && isUserLoggedIn == true" class="input-group">
+    <!-- <div *ngIf="userType == 'user' && isUserLoggedIn == true" class="input-group">
       <select class='select-option' #topicSelect (change)='onTopicSelected(topicSelect.value)' style="border-radius: 0.5rem; margin-right: 1rem;">
         <option class='option' *ngFor='let option of topicOptions' [value]="option">{{ option }}</option>
       </select>
@@ -8,11 +8,11 @@
       <button class="btn btn-info text-white" id="search-addon" (click)="onSearch()">
         <i class="fa fa-search fa-lg"></i>
       </button>
-    </div>
+    </div> -->
     <div class="row d-flex flex-wrap mt-2">
       <div *ngFor="let question of questionList" class="col-lg-4 col-md-6 p-2">
         <div class="bg-white text-dark p-2 question-card">
-          <p class="mb-0">{{ question.question }}</p>
+          <p class="mb-0">{{ question.description_question }}</p>
           <div class="d-flex flex-column mt-2">
             <div class="d-flex flex-row justify-content-between">
               <strong>Topic</strong>
@@ -20,11 +20,11 @@
             </div>
             <div class="d-flex flex-row justify-content-between">
               <strong>Posted By</strong>
-              <span>{{ question.postedBy }}</span>
+              <span>{{ question.qcreated_by.username }}</span>
             </div>
             <div class="d-flex flex-row justify-content-between">
               <strong>Posted At</strong>
-              <span>{{ question.postedAt | date:'medium' }}</span>
+              <span>{{ question.datetime | date:'medium' }}</span>
             </div>
             <div class="pt-2" *ngIf="userType == 'user' && isUserLoggedIn == true">
               <button class="btn btn-warning" (click)="openQuestion(question.id)">

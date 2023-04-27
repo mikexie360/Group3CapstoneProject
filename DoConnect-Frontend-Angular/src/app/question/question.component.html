@@ -1,5 +1,5 @@
 <div class="d-flex flex-column text-white">
-    <div class="py-2 text-center"><h2>{{ questionData?.question }}</h2></div>
+    <div class="py-2 text-center"><h2>{{ questionData?.description_question }}</h2></div>
     <div class="row">
       <div class="col-md-6 col-sm-12">
         <div class="d-flex flex-column my-2">
@@ -9,18 +9,18 @@
           </div>
           <div class="d-flex flex-row justify-content-between">
             <strong>Posted By</strong>
-            <span>{{ questionData?.postedBy }}</span>
+            <span>{{ questionData?.qcreated_by }}</span>
           </div>
           <div class="d-flex flex-row justify-content-between">
             <strong>Posted At</strong>
-            <span>{{ questionData?.postedAt | date:'medium' }}</span>
+            <span>{{ questionData?.datetime | date:'medium' }}</span>
           </div>
           <div class="d-flex flex-row justify-content-between">
             <strong>Approved By</strong>
-            <span>{{ questionData?.approvedBy }}</span>
+            <span>{{ questionData?.qapproved_by }}</span>
           </div>
           <div class="d-flex flex-wrap flex-row justify-content-end">
-            <div *ngFor="let imageName of questionData?.images" class="p-1">
+            <div *ngFor="let imageName of questionData?.image_src" class="p-1">
               <img [attr.src]="getImageUrl(imageName) | secure | async" alt="image" height="100" />
             </div>
           </div>
@@ -54,21 +54,21 @@
         <div class="d-flex flex-column">
           <div *ngFor="let answerData of answersList">
             <div class="d-flex flex-column mt-2" style="border-radius: 0.5rem; border: 1px solid; padding: 0.5rem;">
-              <strong class="mb-2 text-center">{{ answerData.answer }}</strong>
+              <strong class="mb-2 text-center">{{ answerData.description_answer }}</strong>
               <div class="d-flex flex-row justify-content-between">
                 <strong>Posted By</strong>
-                <span>{{ answerData.postedBy }}</span>
+                <span>{{ answerData.acreated_by }}</span>
               </div>
               <div class="d-flex flex-row justify-content-between">
                 <strong>Posted At</strong>
-                <span>{{ answerData.postedAt | date:'medium' }}</span>
+                <span>{{ answerData.datetime | date:'medium' }}</span>
               </div>
               <div class="d-flex flex-row justify-content-between">
                 <strong>Approved By</strong>
-                <span>{{ answerData.approvedBy }}</span>
+                <span>{{ answerData.aapproved_by }}</span>
               </div>
               <div class="d-flex flex-wrap flex-row justify-content-end">
-                <div *ngFor="let imageName of answerData?.images" class="p-1">
+                <div *ngFor="let imageName of answerData?.img_src" class="p-1">
                   <img [attr.src]="getImageUrl(imageName) | secure | async" alt="image" height="100" />
                 </div>
               </div>

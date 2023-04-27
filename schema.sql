@@ -7,5 +7,12 @@ create table User(id int NOT NULL AUTO_INCREMENT, email varchar(40), name varcha
 select * from user;
 insert into user (id,email, name, password, user_type, username) values (2,"abc@gmail.com", "group3","password","user","group3");
 
-insert into user values ("2","abc@gmail.com", "admin","password","admin","admin");
+insert into user values ("12","abc@gmail.com", "admin2","password","admin","admin2");
 update user set name = "user", user_type="user" where id =2;
+Select * from question where status = 'false';
+select * from question;
+insert into question values ("2","10-23-2023", "hello","","false","title","Actors","1","2");
+update question set status = "true" where id =1;
+
+use do_connect_test;
+select * from users;

@@ -28,10 +28,10 @@ export class HomeComponent implements OnInit {
   constructor(private _userService: UserService, private router: Router) {}
 
   ngOnInit(): void {
-    // this._userService.getApprovedQuestions().subscribe({
-    //   next: (result) => (this.questionList = result as QuestionType[]),
-    //   error: (error: HttpErrorResponse) => handleErrorResponse(error, this.router),
-    // });
+    this._userService.getApprovedQuestions().subscribe({
+      next: (result) => (this.questionList = result as QuestionType[]),
+      error: (error: HttpErrorResponse) => handleErrorResponse(error, this.router),
+    });
   }
 
   toggleChatBox() {
@@ -42,20 +42,20 @@ export class HomeComponent implements OnInit {
     this.router.navigate([`/question/${id}`]);
   }
 
-  searchHelper(query: string, topic: string) {
-    this._userService.searchQuestion(query, (topic === 'All') ? '' : topic).subscribe({
-      next: (result) => (this.questionList = result as QuestionType[]),
-      error: (error: HttpErrorResponse) => handleErrorResponse(error, this.router),
-    });
-  }
+  // searchHelper(query: string, topic: string) {
+  //   this._userService.searchQuestion(query, (topic === 'All') ? '' : topic).subscribe({
+  //     next: (result) => (this.questionList = result as QuestionType[]),
+  //     error: (error: HttpErrorResponse) => handleErrorResponse(error, this.router),
+  //   });
+  // }
 
-  onSearch() {
-    this.searchHelper(this.search, (this.topic === 'All') ? '' : this.topic);
-  }
+  // onSearch() {
+  //   this.searchHelper(this.search, (this.topic === 'All') ? '' : this.topic);
+  // }
 
-  onTopicSelected(value: string) {
-    this.topic = value;
-    this.search = '';
-    this.searchHelper(this.search, (this.topic === 'All') ? '' : this.topic);
-  }
+  // onTopicSelected(value: string) {
+  //   this.topic = value;
+  //   this.search = '';
+  //   this.searchHelper(this.search, (this.topic === 'All') ? '' : this.topic);
+  // }
 }

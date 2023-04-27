@@ -17,6 +17,7 @@ public interface CustomerService {
 	public void deleteQuestionById(int id);
 	public List<Question> getAllQuestions();
 	public List<Question> getAllQuestionsFalse();
+	public List<Question> getAllQuestionsTrue();
 	public List<Question> getAllQuestionsByTopic(String topic);
 	public List<Question> getAllQuestionsById(int id);
 	public List<Answer> getAllAnswersById(int id);

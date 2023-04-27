@@ -20,11 +20,11 @@ export class UserService {
   }
 
   getQuestion(id: number) {
-    return this.http.get(BASE_URL + '/questions/' + id);
+    return this.http.get(BASE_URL + '/getallquestionsbyid/' + id);
   }
 
   getApprovedQuestions() {
-    return this.http.get(BASE_URL + '/questions');
+    return this.http.get(BASE_URL + '/question/getallquestionstrue');
   }
 
   postQuestion(question: QuestionPostType) {

@@ -16,7 +16,7 @@ import { handleErrorResponse } from '../utils/util';
 export class PostQuestionComponent implements OnInit {
   public questionForm !: FormGroup;
   topicOptions: string[] = QUESTIONS_TOPICS;
-  uploadedImages: string[] = [];
+  uploadedImages: string = "";
 
   constructor(private _uploadService: UploadImageService, private _userService: UserService, private router: Router) {}
 
@@ -33,7 +33,7 @@ export class PostQuestionComponent implements OnInit {
     if (imageFile) {
       this._uploadService.uploadImage(imageFile).subscribe({
         next: (result) => {
-          this.uploadedImages.push(result);
+          this.uploadedImages = result;
         },
         error: (error: HttpErrorResponse) => handleErrorResponse(error, this.router),
       });
@@ -47,9 +47,10 @@ export class PostQuestionComponent implements OnInit {
   submit() {
     this._userService
       .postQuestion({
-        question: this.questionForm.value.question,
+        description_question: this.questionForm.value.question,
         topic: this.questionForm.value.topic,
-        images: this.uploadedImages,
+        image_src: this.uploadedImages,
+        title: this.questionForm.value.title
       })
       .subscribe({
         next: (result) => {

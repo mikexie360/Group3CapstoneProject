@@ -39,30 +39,32 @@ export interface UserType extends Omit<UserRegisterType, 'password'> {
 }
 
 export interface QuestionPostType {
-    question: string;
+    description_question: string;
     topic: string;
-    images: string[];
+    title: string
+    image_src: string;
 }
 
 export interface QuestionType extends QuestionPostType {
     id: number;
-    postedBy: string;
-	postedAt: Date;
-	approvedBy: string;
-	isApproved: boolean;
+    qcreated_by: User;
+    qapproved_by: User;
+	datetime: string;
+	status: string;
+    answers: AnswerType;
 }
 
 export interface AnswerPostType {
-    answer: string;
-    images: string[];
+    description_answer: string;
+    img_src: string;
 }
 
 export interface AnswerType extends AnswerPostType {
     id: number;
-    postedBy: string;
-	postedAt: Date;
-	approvedBy: string;
-	isApproved: boolean;
+    acreated_by: User;
+	datetime: string;
+	aapproved_by: User;
+	status: string;
     question: QuestionType;
 }
 

@@ -7,6 +7,7 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -17,7 +18,7 @@ import cogent.infotech.com.service.CustomerServiceImpl;
 import cogent.infotech.com.entity.*;
 
 
-@CrossOrigin(origins="http://localhost:4200")
+@CrossOrigin
 @RestController
 public class CustomerController {
 	
@@ -59,9 +60,9 @@ public class CustomerController {
 		return customerService.getAllUsersByUserType(userType);
 	}
 	
-	@DeleteMapping("/user/deletebyid")
+	@DeleteMapping("/user/deletebyid/{id}")
 	@PreAuthorize("hasRole('admin')")
-	public void deleteUserById(@Validated @RequestBody int id) {
+	public void deleteUserById(@Validated @PathVariable("id") int id) {
 		customerService.deleteById(id);
 	}
 	
@@ -81,6 +82,12 @@ public class CustomerController {
 	@PreAuthorize("hasRole('user') || hasRole('admin')")
 	public List<Question> getAllQuestionsFalse() {
 		return customerService.getAllQuestionsFalse();
+	}
+	
+	@GetMapping("/question/getallquestionstrue")
+	@PreAuthorize("hasRole('user') || hasRole('admin')")
+	public List<Question> getAllQuestionsTrue() {
+		return customerService.getAllQuestionsTrue();
 	}
 	
 	@GetMapping("/question/getallquestions")

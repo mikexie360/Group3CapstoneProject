@@ -17,7 +17,7 @@ export class QuestionComponent implements OnInit {
   questionData: QuestionType | undefined = undefined;
   answersList: AnswerType[] = [];
   questionId: number | undefined;
-  uploadedImages: string[] = [];
+  uploadedImages: string = "";
 
   constructor(private _userService: UserService, private activatedRoute: ActivatedRoute, private router: Router, private _uploadService: UploadImageService) {}
 
@@ -49,7 +49,7 @@ export class QuestionComponent implements OnInit {
     if (imageFile) {
       this._uploadService.uploadImage(imageFile).subscribe({
         next: (result) => {
-          this.uploadedImages.push(result);
+          this.uploadedImages = result;
         },
         error: (error: HttpErrorResponse) => handleErrorResponse(error, this.router),
       });
@@ -64,8 +64,8 @@ export class QuestionComponent implements OnInit {
     if (this.questionId) {
       this._userService
       .postAnswer(this.questionId, {
-        answer: this.answerForm.value.answer,
-        images: this.uploadedImages,
+        description_answer: this.answerForm.value.answer,
+        img_src: this.uploadedImages,
       })
       .subscribe({
         next: (result) => {

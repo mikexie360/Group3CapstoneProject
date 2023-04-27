@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { AnswerType, QuestionType, UserType } from '../constants/constants';
+import { AnswerType, QuestionType, User, UserType } from '../constants/constants';
 import { AdminService } from '../service/admin.service';
 import { handleErrorResponse } from '../utils/util';
 
@@ -15,7 +15,7 @@ export class DashboardComponent implements OnInit {
   mode = 'questions';
   questionList: QuestionType[] = [];
   answerList: AnswerType[] = [];
-  userList: UserType[] = [];
+  userList: User[] = [];
 
   constructor(private _adminService: AdminService, private router: Router) {}
 
@@ -42,7 +42,7 @@ export class DashboardComponent implements OnInit {
   getUsers() {
     this.mode = 'users';
     this._adminService.getUsers().subscribe({
-      next: (result) => (this.userList = result as UserType[]),
+      next: (result) => (this.userList = result as User[]),
       error: (err) => handleErrorResponse(err, this.router),
     });
   }

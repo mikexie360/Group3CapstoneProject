@@ -19,11 +19,11 @@ export class AdminService {
   }
 
   getUsers() {
-    return this.http.get(BASE_URL + '/users');
+    return this.http.get(BASE_URL + '/user/getallusers');
   }
 
   deleteUser(id: number) {
-    return this.http.delete(BASE_URL + '/users/' + id, { responseType: 'text' });
+    return this.http.delete(BASE_URL + '/user/deletebyid/' + id, { responseType: 'text' });
   }
 
   approveQuestion(id: number) {

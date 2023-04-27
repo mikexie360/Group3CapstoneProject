@@ -77,7 +77,12 @@ public class CustomerServiceImpl implements CustomerService {
 	
 	@Override
 	public List<Question> getAllQuestionsFalse() {
-		return (List)questionRepository.findByStatus("false");
+		return (List<Question>)questionRepository.findByStatus("false");
+	}
+	
+	@Override
+	public List<Question> getAllQuestionsTrue() {
+		return (List<Question>)questionRepository.findByStatus("true");
 	}
 	
 	@Override
