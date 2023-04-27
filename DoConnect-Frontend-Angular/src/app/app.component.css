@@ -7,3 +7,4 @@
     height: calc(100vh - 98px);
     overflow: auto;
 }
+@import '~bootstrap/dist/css/bootstrap.min.css';
