@@ -31,3 +31,5 @@ build/
 
 ### VS Code ###
 .vscode/
+
+DoConnect/DoConnect/src/main/resources/application.properties

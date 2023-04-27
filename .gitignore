@@ -1,2 +1,3 @@
 DoConnect/DoConnect/src/main/resources/application.properties
 DoConnect/DoConnect/src/main/resources/application.properties
+*.properties

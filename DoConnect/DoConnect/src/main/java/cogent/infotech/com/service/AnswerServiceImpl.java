@@ -20,6 +20,16 @@ public class AnswerServiceImpl implements AnswerService{
 	public List<Answer> getAllAnswersFalse() {
 		return (List)answerRepository.findByStatus("false");
 	}
+	
+	@Override
+	public List<Answer> getAllAnswersTrue() {
+		return (List)answerRepository.findByStatus("true");
+	}
+	
+	@Override
+	public void updateAnswerStatus(int id, String newStatus) {
+		answerRepository.updateAnswerStatus(id , newStatus);
+	}
 
 	@Override
 	public List<Answer> getAllAnswers() {

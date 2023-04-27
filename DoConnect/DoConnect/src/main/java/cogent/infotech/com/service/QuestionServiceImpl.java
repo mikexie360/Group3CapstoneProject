@@ -32,8 +32,8 @@ public class QuestionServiceImpl implements QuestionService{
 	}
 	
 	@Override
-	public void updateQuestion(Question question) {
-		questionRepository.save(question);
+	public void updateQuestionStatus(int id, String newStatus) {
+		questionRepository.updateQuestionStatus(id , newStatus);
 	}
 	
 	@Override

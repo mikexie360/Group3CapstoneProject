@@ -10,7 +10,7 @@ public interface QuestionService {
 	public List<Question> getAllQuestions();
 	public List<Question> getAllQuestionsFalse();
 	public void addQuestion(Question question);
-	public void updateQuestion(Question question);
+	public void updateQuestionStatus(int id, String newStatus);
 	public void deleteQuestionById(int id);
 	public List<Question> getAllQuestionsById(int id);
 	public List<Question> getAllQuestionsByTopic(String topic);
