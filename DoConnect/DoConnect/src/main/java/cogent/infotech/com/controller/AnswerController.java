@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -30,10 +31,10 @@ public class AnswerController {
 		answerService.addAnswer(answer);
 	}
 	
-	@PostMapping("/updateanswer")
+	@PutMapping("/updateanswer")
 	@PreAuthorize("hasRole('user') || hasRole('admin')")
-	public void updateAnswer(@Validated @RequestBody Answer answer) {
-		answerService.updateAnswer(answer);
+	public void updateQuestion(@Validated @RequestBody updateAnswerStatusContent uasc) {
+		answerService.updateAnswerStatus(uasc.getId(), uasc.getStatus());
 	}
 	
 	@DeleteMapping("/deleteanswerbyid")
@@ -54,6 +55,12 @@ public class AnswerController {
 		return answerService.getAllAnswersFalse();
 	}
 	
+	@GetMapping("/getallanswertrue")
+	@PreAuthorize("hasRole('user') || hasRole('admin')")
+	public List<Answer> getAllAnswersTrue() {
+		return answerService.getAllAnswersTrue();
+	}
+	
 	@GetMapping("/getallanswerbyquestionid")
 	@PreAuthorize("hasRole('user') || hasRole('admin')")
 	public List<Answer> getAllAnswersByQuestionId(@Validated @RequestBody int questionid) {
@@ -66,4 +73,33 @@ public class AnswerController {
 		return answerService.getAllAnswersById(id);
 	}
 
+}
+
+class updateAnswerStatusContent {
+	
+	int id;
+	String status;
+	
+	public updateAnswerStatusContent(int id, String status) {
+		super();
+		this.id = id;
+		this.status = status;
+	}
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	public String getStatus() {
+		return status;
+	}
+
+	public void setStatus(String status) {
+		this.status = status;
+	}
+	
 }
