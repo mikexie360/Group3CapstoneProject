@@ -7,12 +7,16 @@
   <mat-toolbar-row>
     <span>
       DoConnect</span>
+      <span *ngIf="userType=='user'">-User Dashboard-</span>
+      <span *ngIf="userType=='admin'">-Admin Dashboard-</span>
+      <span *ngIf="username!=''">-{{username}}-</span>
     <div class="spacer"></div>
 
     <a mat-button routerLink="" routerLinkActive="active">
       <mat-icon aria-hidden="false" aria-label="Example home icon" fontIcon="home"></mat-icon>Home</a>
       <!-- <a mat-raised-button color="secondary" routerLink="admin" routerLinkActive="active" >Admin</a> -->
       <a mat-raised-button color="accent" routerLink="usersignuplogin" routerLinkActive="active" >Sign up/Login</a>
+      <!-- <a mat-raised-button color="accent" routerLink="usersignuplogin" routerLinkActive="active" >Logout</a> -->
 
   </mat-toolbar-row>
 

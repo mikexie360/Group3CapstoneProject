@@ -23,6 +23,7 @@ export class UserSignUpComponent implements OnInit{
     ""
   );
   signup(signUpForm: NgForm){
+    console.log("hi");
     console.log(signUpForm.value);
 
     this.userService.signupUser(signUpForm.value).subscribe((data:User)=>{

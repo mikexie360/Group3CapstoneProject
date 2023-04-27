@@ -40,7 +40,15 @@ export class UserLoginComponent implements OnInit{
 
         // saving to local storage
         this.userAuthService.setUser(tokenInfo.user);
-        
+
+        if (localStorage.getItem("user.userType") =="admin"){
+          this.router.navigate(['admindashboard']);
+        } else {
+          this.router.navigate(['userdashbaord']);
+        }
+
+
+
         // if (role === 'admin') {
         //   alert("role is admin")
         //   // this.router.navigate(['/admin']);

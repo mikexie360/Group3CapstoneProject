@@ -18,7 +18,7 @@ export class UserService{
 
     private signupUserUrl = "http://localhost:8080/adduser";
     private authenticateUrl = "http://localhost:8080/authenticate";
-
+    private getAllUsersUrl = "http://localhost:8080/getallusers";
     private updateUserUrl = "http://localhost:8080/updateuser";
     private getLoginUrl = "http://localhost:8080/getlogin";
     private userLoginVerifyUrl = "http://localhost:8080/userloginverify";
@@ -65,6 +65,13 @@ export class UserService{
             'responseType': 'text'
         });
     }
+
+    getAllUsers():Observable<User[]>{
+        return this.http.get<User[]>(`${this.getAllUsersUrl}`,{
+            headers: this.requestHeader,
+        });
+    }
+
 
     public roleMatch(allowedRoles:any): boolean {
         let isMatch:boolean = false;

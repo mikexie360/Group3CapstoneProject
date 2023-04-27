@@ -41,18 +41,17 @@ export class UserAuthService {
   }
 
   public setUser(user:User) {
-    localStorage.setItem('user.id', user.id.toString());
+    // localStorage.setItem('user.id', user.id.toString());
     localStorage.setItem('user.email', user.email);
     localStorage.setItem('user.name',user.name);
     // localStorage.setItem('user.password', user.password);
     localStorage.setItem('user.userType', user.userType);
     localStorage.setItem('user.username', user.username);
-
   }
 
-  public getUserId(): string {
-    return localStorage.getItem('user.id') as string;
-  }
+//   public getUserId(): string {
+    // return localStorage.getItem('user.id') as string;
+//   }
   public getUserEmail(): string {
     return localStorage.getItem('user.email') as string;
   }

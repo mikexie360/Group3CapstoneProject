@@ -37,6 +37,13 @@ import { AdminRegisterAndLoginComponent } from './admin-register-and-login/admin
 import { UserAuthService } from './services/user-auth.service';
 import { AuthInterceptor } from './auth/auth.interceptor';
 import { UserService } from './services/user.service';
+import { AdminDashboardDeleteUsersComponent } from './admin-dashboard-delete-users/admin-dashboard-delete-users.component';
+import { AdminDashboardDeleteQuestionsComponent } from './admin-dashboard-delete-questions/admin-dashboard-delete-questions.component';
+import { AdminDashboardDeleteAnswersComponent } from './admin-dashboard-delete-answers/admin-dashboard-delete-answers.component';
+import { UserChatComponent } from './user-chat/user-chat.component';
+import { UserQuestionsComponent } from './user-questions/user-questions.component';
+import { AdminDashboardComponent } from './admin-dashboard/admin-dashboard.component';
+import { UserDashboardComponent } from './user-dashboard/user-dashboard.component';
 
 @NgModule({
   declarations: [
@@ -57,7 +64,14 @@ import { UserService } from './services/user.service';
     ChatComponent,
     UserToUserChatComponent,
     PageNotFoundComponent,
-    AdminRegisterAndLoginComponent
+    AdminRegisterAndLoginComponent,
+    AdminDashboardDeleteUsersComponent,
+    AdminDashboardDeleteQuestionsComponent,
+    AdminDashboardDeleteAnswersComponent,
+    UserChatComponent,
+    UserQuestionsComponent,
+    AdminDashboardComponent,
+    UserDashboardComponent
   ],
   imports: [
     BrowserModule,FormsModule,

@@ -1,0 +1,9 @@
+.main-container {
+    background-color: lightblue;
+    height: 100vh;
+}
+
+.routes-container {
+    height: calc(100vh - 98px);
+    overflow: auto;
+}

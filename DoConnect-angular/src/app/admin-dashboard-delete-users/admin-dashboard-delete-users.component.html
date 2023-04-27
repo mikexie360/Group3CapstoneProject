@@ -1,0 +1,34 @@
+<p>admin-dashboard-delete-users works!</p>
+<table>
+    <thead>
+        <th>
+            id
+        </th>
+        <th>
+            name
+        </th>
+        <th>
+            username
+        </th>
+        <th>
+            password
+        </th>
+        <th>
+            email
+        </th>
+        <th>
+            userType
+        </th>
+    </thead>
+    <tbody>
+        <tr *ngFor="let user of users" #user>
+            <td>{{user.id}}</td>
+            <td>{{user.name}}</td>
+            <td>{{user.username}}</td>
+            <td>{{user.password}}</td>
+            <td>{{user.email}}</td>
+            <td>{{user.userType}}</td>
+
+        </tr>
+    </tbody>
+</table>
