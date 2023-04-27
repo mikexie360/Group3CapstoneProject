@@ -8,12 +8,18 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import org.springframework.security.access.prepost.PreAuthorize;
 
 import cogent.infotech.com.service.QuestionServiceImpl;
+import lombok.Data;
+import cogent.infotech.com.entity.Answer;
 import cogent.infotech.com.entity.Question;
 import cogent.infotech.com.entity.User;
 
@@ -30,10 +36,10 @@ public class QuestionController {
 		questionService.addQuestion(question);
 	}
 	
-	@PostMapping("/updatequestion")
+	@PutMapping("/updatequestion")
 	@PreAuthorize("hasRole('user') || hasRole('admin')")
-	public void updateQuestion(@Validated @RequestBody Question question) {
-		questionService.updateQuestion(question);
+	public void updateQuestion(@Validated @RequestBody updateQuestionStatusContent uqsc) {
+		questionService.updateQuestionStatus(uqsc.getId(), uqsc.getStatus());
 	}
 	
 	@DeleteMapping("/deletequestionbyid")
@@ -66,4 +72,33 @@ public class QuestionController {
 		return questionService.getAllQuestionsById(id);
 	}
 
+}
+
+class updateQuestionStatusContent {
+	
+	int id;
+	String status;
+	
+	public updateQuestionStatusContent(int id, String status) {
+		super();
+		this.id = id;
+		this.status = status;
+	}
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	public String getStatus() {
+		return status;
+	}
+
+	public void setStatus(String status) {
+		this.status = status;
+	}
+	
 }
