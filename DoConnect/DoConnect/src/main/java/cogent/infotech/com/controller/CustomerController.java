@@ -157,10 +157,40 @@ public class CustomerController {
 		return customerService.getAllChatByTouser(chat.getTouser());
 	}
 	
+	@GetMapping("/chat/getallchatbetweentwousers")
+	@PreAuthorize("hasRole('user') || hasRole('admin')")
+	public List<Chat> getAllChatBetweenTwoUsers(@Validated @RequestBody FromUserToUser futu){
+		return customerService.getAllChatBetweenTwoUsers(futu.getFromuser(), futu.getTouser());
+	}
+	
 	@DeleteMapping("/chat/deletebyid")
 	@PreAuthorize("hasRole('admin')")
 	public void deleteChatById(@Validated @RequestBody int id) {
 		customerService.deleteChatById(id);
 	}
 
+}
+class FromUserToUser{
+	String fromuser;
+	String touser;
+	
+	public FromUserToUser(String fromuser, String touser) {
+		super();
+		this.fromuser = fromuser;
+		this.touser = touser;
+	}
+	public String getFromuser() {
+		return fromuser;
+	}
+	public void setFromuser(String fromuser) {
+		this.fromuser = fromuser;
+	}
+	public String getTouser() {
+		return touser;
+	}
+	public void setTouser(String touser) {
+		this.touser = touser;
+	}
+	
+	
 }

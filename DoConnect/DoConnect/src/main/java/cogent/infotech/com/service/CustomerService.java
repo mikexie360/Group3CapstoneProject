@@ -35,5 +35,5 @@ public interface CustomerService {
 	public Optional<User> getAllUsersById(int id);
 	public List<User> getAllUsersByName(String name);
 	public List<User> getAllUsersByUserType(String userType);
-
+	public List<Chat> getAllChatBetweenTwoUsers(String fromuser, String touser);
 }

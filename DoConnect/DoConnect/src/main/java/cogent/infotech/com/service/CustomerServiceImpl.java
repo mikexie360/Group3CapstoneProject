@@ -168,4 +168,9 @@ public class CustomerServiceImpl implements CustomerService {
 		return (List)userRepository.findByName(userType);
 	}
 
+	@Override
+	public List<Chat> getAllChatBetweenTwoUsers(String fromuser, String touser) {
+		return (List)chatRepository.findAllBetweenTwoUsers(fromuser, touser);
+	}
+
 }
