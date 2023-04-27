@@ -7,6 +7,7 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -33,13 +34,13 @@ public class AnswerController {
 	
 	@PutMapping("/updateanswer")
 	@PreAuthorize("hasRole('user') || hasRole('admin')")
-	public void updateQuestion(@Validated @RequestBody updateAnswerStatusContent uasc) {
+	public void updateAnswerStatus(@Validated @RequestBody updateAnswerStatusContent uasc) {
 		answerService.updateAnswerStatus(uasc.getId(), uasc.getStatus());
 	}
 	
-	@DeleteMapping("/deleteanswerbyid")
+	@DeleteMapping("/deleteanswerbyid/{id}")
 	@PreAuthorize("hasRole('admin')")
-	public void deleteAnswerById(@Validated @RequestBody int id) {
+	public void deleteAnswerById(@Validated @PathVariable("id") int id) {
 		answerService.deleteAnswerById(id);
 	}
 	

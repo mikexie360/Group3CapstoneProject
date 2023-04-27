@@ -102,9 +102,9 @@ public class CustomerController {
 		return customerService.getAllQuestionsByTopic(questionTopic);
 	}
 	
-	@DeleteMapping("/question/deletebyid")
+	@DeleteMapping("/question/deletebyid/{id}")
 	@PreAuthorize("hasRole('admin')")
-	public void deleteQuestionById(@Validated @RequestBody int id) {
+	public void deleteQuestionById(@Validated @PathVariable int id) {
 		customerService.deleteQuestionById(id);
 	}
 	

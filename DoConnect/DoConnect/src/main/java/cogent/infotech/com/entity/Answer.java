@@ -24,7 +24,7 @@ public class Answer {
 	private String status;
 	private String datetime;
 	
-	@ManyToOne(cascade = CascadeType.MERGE)
+	@ManyToOne(cascade = {CascadeType.MERGE, CascadeType.REMOVE})
 	@JoinColumn(name="question_id" , nullable=false)
 	private Question question;
 	
