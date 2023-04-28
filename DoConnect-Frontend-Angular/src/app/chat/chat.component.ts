@@ -1,8 +1,9 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ChatService } from '../service/chat.service';
-import { getCurrentUsername, isUserAdmin } from '../utils/util';
+import { getCurrentUsername, getToUsername, isUserAdmin } from '../utils/util';
+import { FromUserToUser, chatmessage,ChatMessageType } from '../constants/constants';
 
-const CHAT_REFRESH_FRQUENCY_IN_SECONDS = 5;
+const CHAT_REFRESH_FRQUENCY_IN_SECONDS = 1;
 
 interface ChatMessage {
   message: string;
@@ -23,7 +24,14 @@ export class ChatComponent implements OnInit, OnDestroy {
   isUserAdmin: boolean;
   interval: number | null = null;
   currentUsername?: string = getCurrentUsername();
+  toUser?: string = getToUsername();
+  futu:FromUserToUser= new FromUserToUser(
+    this.currentUsername as string, this.toUser as string
+  );
+  futuResults:chatmessage[]=[];
+  chatMessageSend:ChatMessageType=new ChatMessageType();
 
+  
   constructor(private _chatservice: ChatService) {
     this.message = '';
     this.chatMessageList = [];
@@ -31,7 +39,11 @@ export class ChatComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    if (!this.isUserAdmin) {
+    this.currentUsername = getCurrentUsername();
+    this.toUser = getToUsername();
+    this.futu.fromuser =this.currentUsername as string;
+    this.futu.touser=this.toUser as string;
+    if (true) {
       this.fetchChatMessages();
       this.interval = window.setInterval(() => {
         this.fetchChatMessages();
@@ -47,17 +59,30 @@ export class ChatComponent implements OnInit, OnDestroy {
   }
 
   fetchChatMessages() {
-    this._chatservice.getChatMessagesList().subscribe({
-      next: (results) => (this.chatMessageList = results as ChatMessage[]),
-      error: (error) => console.error('Error while fetching chat messages list. Details: ', error),
+    this.futu.fromuser = getCurrentUsername() as string;
+    this.futu.touser = getToUsername() as string;
+
+    console.log(this.futu);
+    this._chatservice.getChatMessagesList(this.futu.fromuser,this.futu.touser).subscribe({
+      next: (results:any) => (
+          // console.log(results)
+          // this.chatMessageList = results as ChatMessage[]
+          this.futuResults = results
+      ),
+      error: (error:any) => console.error('Error while fetching chat messages list. Details: ', error),
     });
+    console.log(this.futuResults);
   }
 
   onSendMessage() {
-    this._chatservice.createChat({ message: this.message }).subscribe({
+    this.chatMessageSend.datetime = (new Date().getTime() as any) as string;
+    this.chatMessageSend.fromuser =getCurrentUsername() as string;
+    this.chatMessageSend.touser = getToUsername() as string;
+    this.chatMessageSend.message = this.message as string;
+    this._chatservice.addChat(this.chatMessageSend).subscribe({
       next: (results) => {
         this.message = '';
-        this.chatMessageList = results as ChatMessage[];
+        // this.chatMessageList = results as ChatMessage[];
       },
       error: (error) => console.error('Error while sending chat message. Details: ', error),
     });

@@ -2,7 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AnswerType, QuestionType, User, UserType } from '../constants/constants';
 import { AdminService } from '../service/admin.service';
-import { handleErrorResponse } from '../utils/util';
+import { handleErrorResponse, isUserAdmin, getUserType, isUserLoggedIn  } from '../utils/util';
+import {DragDropModule} from '@angular/cdk/drag-drop';
+import {MatGridListModule} from '@angular/material/grid-list';
+
+const OPEN_CHAT_BUTTON_LABEL = 'Chat';
 
 @Component({
   selector: 'app-dashboard',
@@ -17,10 +21,18 @@ export class DashboardComponent implements OnInit {
   answerList: AnswerType[] = [];
   userList: User[] = [];
 
+  // chatbox = 'none';
+  chatbox = 'block';
+  userType = getUserType();
+  isAdmin: boolean = isUserAdmin();
+  isUserLoggedIn: boolean = isUserLoggedIn();
+  chatButton: string = OPEN_CHAT_BUTTON_LABEL;
+
   constructor(private _adminService: AdminService, private router: Router) {}
 
   ngOnInit(): void {
-    // this.getUnapprovedQuestions();
+    this.getUnapprovedQuestions();
+    console.log(this.getUnapprovedQuestions());
   }
 
   getUnapprovedQuestions() {
@@ -34,9 +46,13 @@ export class DashboardComponent implements OnInit {
   getUnapprovedAnswers() {
     this.mode = 'answers';
     this._adminService.getUnapprovedAnswers().subscribe({
-      next: (result) => (this.answerList = result as AnswerType[]),
+      next: (result:any) => (
+        // console.log(result)
+        this.answerList = result as AnswerType[]
+        ),
       error: (err) => handleErrorResponse(err, this.router),
     });
+    console.log(this.answerList);
   }
 
   getUsers() {
@@ -47,15 +63,34 @@ export class DashboardComponent implements OnInit {
     });
   }
 
+  getUsersChat() {
+    this.mode = 'chats';
+    this._adminService.getUsers().subscribe({
+      next: (result) => (this.userList = result as User[]),
+      error: (err) => handleErrorResponse(err, this.router),
+    });
+  }
+
   onDelete(id: number) {
-    if (confirm('Are you sure you want to remove this user? This action cannot be reverted.')) {
+    // if (confirm('Are you sure you want to remove this user? This action cannot be reverted.')) {
       this._adminService.deleteUser(id).subscribe({
         next: (res) => this.getUsers(),
         error: (err) => handleErrorResponse(err, this.router),
       });
-    }
+    // }
   }
 
+  onChat(touser: string) {
+    // if (confirm('Are you sure you want to remove this user? This action cannot be reverted.')) {
+    //   this._adminService.deleteUser(id).subscribe({
+    //     next: (res) => {
+    //       this.getUsers()
+    //     },
+    //     error: (err) => handleErrorResponse(err, this.router),
+    //   });
+    // }
+    localStorage.setItem("touser", touser);
+  }
   onApproveQuestion(id: number) {
     this._adminService.approveQuestion(id).subscribe({
       next: (res) => this.getUnapprovedQuestions(),
@@ -64,27 +99,28 @@ export class DashboardComponent implements OnInit {
   }
 
   onDeleteQuestion(id: number) {
-    if (confirm('Are you sure? This action cannot be reverted.')) {
+    // if (confirm('Are you sure? This action cannot be reverted.')) {
       this._adminService.deleteQuestion(id).subscribe({
         next: (res) => this.getUnapprovedQuestions(),
         error: (err) => handleErrorResponse(err, this.router),
       });
-    }
+    // }
   }
 
-  onApproveAnswer(answer: AnswerType) {
-    this._adminService.approveAnswer(answer).subscribe({
+  onApproveAnswer(id:number) {
+    this._adminService.approveAnswer(id).subscribe({
       next: (res) => this.getUnapprovedAnswers(),
       error: (err) => handleErrorResponse(err, this.router),
     });
   }
 
-  onDeleteAnswer(answer: AnswerType) {
-    if (confirm('Are you sure? This action cannot be reverted.')) {
-      this._adminService.deleteAnswer(answer).subscribe({
+  onDeleteAnswer(id:number) {
+    // if (confirm('Are you sure? This action cannot be reverted.')) {
+      this._adminService.deleteAnswer(id).subscribe({
         next: (res) => this.getUnapprovedAnswers(),
         error: (err) => handleErrorResponse(err, this.router),
       });
-    }
+    // }
   }
+
 }

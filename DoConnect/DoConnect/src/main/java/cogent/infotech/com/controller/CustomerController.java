@@ -163,6 +163,13 @@ public class CustomerController {
 		return customerService.getAllChatBetweenTwoUsers(futu.getFromuser(), futu.getTouser());
 	}
 	
+	@GetMapping("/chat/getallchatbetweentwousers/{fromuser}/{touser}")
+	@PreAuthorize("hasRole('user') || hasRole('admin')")
+	public List<Chat> getAllChatBetweenTwoUsersPath(@Validated @PathVariable("fromuser") String fromuser,
+			@Validated @PathVariable("touser") String touser){
+		return customerService.getAllChatBetweenTwoUsers(fromuser, touser);
+	}
+	
 	@DeleteMapping("/chat/deletebyid")
 	@PreAuthorize("hasRole('admin')")
 	public void deleteChatById(@Validated @RequestBody int id) {

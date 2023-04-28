@@ -3,6 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { AngularEditorModule } from '@kolkov/angular-editor';
+import { DragDropModule } from '@angular/cdk/drag-drop';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -19,6 +20,8 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { ChatComponent } from './chat/chat.component';
 import { SecurePipe } from './utils/secure.pipe';
 import { authInterceptorProviders } from './utils/auth.interceptor';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import {MatGridListModule} from '@angular/material/grid-list';
 
 @NgModule({
   declarations: [
@@ -43,6 +46,9 @@ import { authInterceptorProviders } from './utils/auth.interceptor';
     HttpClientModule,
     AngularEditorModule,
     ReactiveFormsModule,
+    BrowserAnimationsModule,
+    DragDropModule,
+    MatGridListModule
   ],
   providers: [authInterceptorProviders],
   bootstrap: [AppComponent]

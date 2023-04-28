@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { AnswerType, BASE_URL } from '../constants/constants';
+import { AnswerType, BASE_URL, QuestionType } from '../constants/constants';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -10,12 +11,12 @@ export class AdminService {
 
   constructor(private http: HttpClient) {}
 
-  getUnapprovedQuestions() {
-    return this.http.get(BASE_URL + '/questions?status=unapproved');
+  getUnapprovedQuestions():Observable<QuestionType[]> {
+    return this.http.get<QuestionType[]>(BASE_URL + '/question/getallquestionsfalse');
   }
 
-  getUnapprovedAnswers() {
-    return this.http.get(BASE_URL + '/answers?status=unapproved');
+  getUnapprovedAnswers():Observable<AnswerType[]> {
+    return this.http.get<AnswerType[]>(BASE_URL + '/getallanswerfalse');
   }
 
   getUsers() {
@@ -27,19 +28,19 @@ export class AdminService {
   }
 
   approveQuestion(id: number) {
-    return this.http.put(BASE_URL + '/questions/' + id, { isApproved: true });
+    return this.http.put(BASE_URL + `/updatequestion/${id}/true`, { isApproved: true });
   }
 
-  approveAnswer(answer: AnswerType) {
-    return this.http.put(BASE_URL + '/questions/' + answer.question.id + '/answers/' + answer.id, { isApproved: true });
+  approveAnswer(id:number) {
+    return this.http.put(BASE_URL + `/updateanswer/${id}/true`, { isApproved: true });
   }
 
   deleteQuestion(id: number) {
-    return this.http.delete(BASE_URL + '/questions/' + id, { responseType: 'text' });
+    return this.http.delete(BASE_URL + `/question/deletebyid/${id}`, { responseType: 'text' });
   }
 
-  deleteAnswer(answer: AnswerType) {
-    return this.http.delete(BASE_URL + '/questions/' + answer.question.id + '/answers/' + answer.id, { responseType: 'text' });
+  deleteAnswer(id: number) {
+    return this.http.delete(BASE_URL + `/deleteanswerbyid/${id}`);
   }
 
 }

@@ -59,14 +59,39 @@ export interface AnswerPostType {
     img_src: string;
 }
 
-export interface AnswerType extends AnswerPostType {
+export interface AnswerType {
     id: number;
+    description_answer: string;
+    img_src: string;
     acreated_by: User;
 	datetime: string;
 	aapproved_by: User;
 	status: string;
     question: QuestionType;
 }
+export interface chatmessage{
+    id:number;
+    fromuser:string;
+    touser:string;
+    message:string;
+    datetime:string;
+}
+
+export class ChatMessageType{
+    fromuser:string="";
+    touser:string="";
+    message:string="";
+    datetime:string="";
+}
+
+export class FromUserToUser{
+    fromuser:string = ""; 
+    touser:string = "";
+    constructor(fromuser:string, touser:string){
+
+    }
+}
+
 
 export const QUESTIONS_TOPICS = [
     'Actors',

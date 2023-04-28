@@ -45,6 +45,15 @@ export const getCurrentUsername = () => {
   return undefined;
 };
 
+export const getToUsername = () =>{
+    const item = localStorage.getItem('touser');
+    if(item){
+      return item;
+    } else{
+      return "";
+    } 
+};
+
 export const handleErrorResponse = (error: HttpErrorResponse, router: Router) => {
   if (error.status === 400) {
     if (error?.error) {

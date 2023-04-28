@@ -13,7 +13,7 @@ import cogent.infotech.com.entity.Question;
 
 @Repository
 public interface AnswerRepository extends JpaRepository<Answer, Integer> {
-	
+
 	@Query(value ="SELECT * From answer where status = ?1"
 			,nativeQuery = true)
 	List<Answer> findByStatus(String status);

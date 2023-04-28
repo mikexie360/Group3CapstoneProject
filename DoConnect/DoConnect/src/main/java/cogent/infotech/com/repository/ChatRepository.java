@@ -13,7 +13,7 @@ public interface ChatRepository extends JpaRepository<Chat, Integer>{
 	
 	List<Chat> findAllByTouser(String name);
 	
-	@Query(value ="SELECT * From chat where fromuser = ?1 and touser = ?2"
+	@Query(value ="SELECT * From chat where (fromuser = ?1 and touser = ?2) or (fromuser = ?2 and touser = ?1)"
 			,nativeQuery = true)
 	List<Chat> findAllBetweenTwoUsers(String fromuser, String touser);
 
