@@ -1,6 +1,7 @@
 package cogent.infotech.com.entity;
 
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -20,6 +21,7 @@ public class Answer {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int id;
 	private String description_answer;
+	@Column(length = 10000)
 	private String img_src;
 	private String status;
 	private String datetime;

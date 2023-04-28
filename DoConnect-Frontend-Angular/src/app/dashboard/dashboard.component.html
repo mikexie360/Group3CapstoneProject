@@ -41,7 +41,7 @@
               <td class="align-middle">{{ question.qcreated_by.username }}</td>
               <td class="align-middle">{{ question.datetime | date: 'medium' }}</td>
               <td class="align-middle">{{ question.status }}</td>
-              <td class="align-middle">{{ question.image_src }}</td>
+              <td class="align-middle"><img [src]="question.image_src"></td>
               <td class="align-middle">
                 <button
                   class="btn btn-success mx-1"

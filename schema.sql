@@ -11,6 +11,7 @@ insert into user values ("12","abc@gmail.com", "admin2","password","admin","admi
 update user set name = "user", user_type="user" where id =2;
 Select * from question where status = 'true';
 select * from question;
+ALTER TABLE question MODIFY image_src VARCHAR(10000);
 delete from question where id =43;
 insert into question values ("2","10-23-2023", "hello","","false","title","Actors","1","2");
 update question set status = "true" where id =1;

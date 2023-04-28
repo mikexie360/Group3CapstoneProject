@@ -38,8 +38,8 @@ public class QuestionServiceImpl implements QuestionService{
 		for(int i = 0; i < admins.size(); i++) {
 			emailService.sendEmail(admins.get(i).getEmail(),
 					"Dear "+ admins.get(i).getUsername()+",\n\n"
-					+"A new question needs to be approved.\n"
-					+ "Question title: " + question.getTitle() + "\nQuestion Description" + question.getDescription_question()+"\n"
+					+"A new question needs to be approved.\n\n"
+					+ "Question title: " + question.getTitle() + "\nQuestion Description: " + question.getDescription_question()+"\n"
 					+"\nThank you,\nFrom DoConnect Email Service.",
 					"A new question needs to be approved");
 		}

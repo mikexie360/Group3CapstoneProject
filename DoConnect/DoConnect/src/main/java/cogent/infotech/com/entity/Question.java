@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.*;
 
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -27,6 +28,7 @@ public class Question {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int id;
 	private String description_question;
+	@Column(length = 10000)
 	private String image_src;
 	private String datetime;
 	private String status;

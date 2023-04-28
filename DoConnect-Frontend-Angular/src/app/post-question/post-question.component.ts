@@ -17,14 +17,14 @@ export class PostQuestionComponent implements OnInit {
   public questionForm:FormGroup;
   topicOptions: string[] = QUESTIONS_TOPICS;
   uploadedImages: string = "";
-
-  item:any = {};
+  path:string ="";
 
   constructor(private _uploadService: UploadImageService, private _userService: UserService, private router: Router) {
     this.questionForm = new FormGroup({
       title: new FormControl(),
       topic: new FormControl(),
-      question: new FormControl()
+      question: new FormControl(),
+      image: new FormControl()
     })
   }
 
@@ -32,8 +32,8 @@ export class PostQuestionComponent implements OnInit {
     this.questionForm = new FormGroup({
       title: new FormControl(''),
       question: new FormControl('', [Validators.required]),
-      topic: new FormControl(QUESTIONS_TOPICS[0], [Validators.required])
-      // images: new FormControl('')
+      topic: new FormControl(QUESTIONS_TOPICS[0], [Validators.required]),
+      image: new FormControl('')
     });
   }
 
@@ -63,7 +63,7 @@ export class PostQuestionComponent implements OnInit {
         topic: this.questionForm.value.topic,
         // title: this.questionForm.value.title,
         title: this.questionForm.value.title,
-        image_src: "test no image",
+        image_src: this.questionForm.value.image,
         qcreated_by: {id : getCurrentId()},
         qapproved_by: {id : getCurrentId()},
       })
