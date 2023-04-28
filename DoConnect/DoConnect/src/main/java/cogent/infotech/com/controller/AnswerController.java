@@ -32,16 +32,18 @@ public class AnswerController {
 		answerService.addAnswer(answer);
 	}
 	
-	@PutMapping("/updateanswer")
-	@PreAuthorize("hasRole('user') || hasRole('admin')")
-	public void updateAnswerStatus(@Validated @RequestBody updateAnswerStatusContent uasc) {
-		answerService.updateAnswerStatus(uasc.getId(), uasc.getStatus());
-	}
-	
+//	@PutMapping("/updateanswer")
+//	@PreAuthorize("hasRole('user') || hasRole('admin')")
+//	public void updateAnswerStatus(@Validated @RequestBody updateAnswerStatusContent uasc) {
+//		answerService.updateAnswerStatus(uasc.getId(), uasc.getStatus());
+//	}
+//	
 	@PutMapping("/updateanswer/{id}/{status}")
 	@PreAuthorize("hasRole('user') || hasRole('admin')")
-	public void updateAnswerStatusPath(@Validated @PathVariable("id") int id, @Validated @PathVariable("status") String status) {
-		answerService.updateAnswerStatus(id, status);
+	public void updateAnswerStatusPath(@Validated @PathVariable("id") int id, 
+			@Validated @PathVariable("status") String status,
+			@Validated @RequestBody User user) {
+		answerService.updateAnswerStatus(id, status, user.getId());
 	}
 	
 	

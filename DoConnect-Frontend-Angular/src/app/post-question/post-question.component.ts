@@ -1,11 +1,11 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormControl, FormGroup, Validators,FormBuilder  } from '@angular/forms';
 import { Router } from '@angular/router';
-import { BASE_URL, QUESTIONS_TOPICS } from '../constants/constants';
+import { BASE_URL, QUESTIONS_TOPICS, User } from '../constants/constants';
 import { UploadImageService } from '../service/upload-image.service';
 import { UserService } from '../service/user.service';
-import { handleErrorResponse } from '../utils/util';
+import { getCurrentUsername, handleErrorResponse, getCurrentId } from '../utils/util';
 
 @Component({
   selector: 'app-post-question',
@@ -14,47 +14,62 @@ import { handleErrorResponse } from '../utils/util';
 })
 
 export class PostQuestionComponent implements OnInit {
-  public questionForm !: FormGroup;
+  public questionForm:FormGroup;
   topicOptions: string[] = QUESTIONS_TOPICS;
   uploadedImages: string = "";
 
-  constructor(private _uploadService: UploadImageService, private _userService: UserService, private router: Router) {}
+  item:any = {};
+
+  constructor(private _uploadService: UploadImageService, private _userService: UserService, private router: Router) {
+    this.questionForm = new FormGroup({
+      title: new FormControl(),
+      topic: new FormControl(),
+      question: new FormControl()
+    })
+  }
 
   ngOnInit(): void {
     this.questionForm = new FormGroup({
+      title: new FormControl(''),
       question: new FormControl('', [Validators.required]),
-      topic: new FormControl(QUESTIONS_TOPICS[0], [Validators.required]),
-      images: new FormControl('')
+      topic: new FormControl(QUESTIONS_TOPICS[0], [Validators.required])
+      // images: new FormControl('')
     });
   }
 
-  onChange(event: any) {
-    const imageFile = event.target.files[0];
-    if (imageFile) {
-      this._uploadService.uploadImage(imageFile).subscribe({
-        next: (result) => {
-          this.uploadedImages = result;
-        },
-        error: (error: HttpErrorResponse) => handleErrorResponse(error, this.router),
-      });
-    }
-  }
+  // onChange(event: any) {
+  //   const imageFile = event.target.files[0];
+  //   if (imageFile) {
+  //     this._uploadService.uploadImage(imageFile).subscribe({
+  //       next: (result) => {
+  //         this.uploadedImages = result;
+  //       },
+  //       error: (error: HttpErrorResponse) => handleErrorResponse(error, this.router),
+  //     });
+  //   }
+  // }
 
-  getImageUrl(imageName: string) {
-    return `${BASE_URL}/images/${imageName}`;
-  }
+  // getImageUrl(imageName: string) {
+  //   return `${BASE_URL}/images/${imageName}`;
+  // }
 
   submit() {
+    console.log(Date.now());
     this._userService
       .postQuestion({
-        description_question: this.questionForm.value.question,
+        description_question:this.questionForm.value.question,
+        status: "false",
+        datetime: (Date.now() as any as string),
         topic: this.questionForm.value.topic,
-        image_src: this.uploadedImages,
-        title: this.questionForm.value.title
+        // title: this.questionForm.value.title,
+        title: this.questionForm.value.title,
+        image_src: "test no image",
+        qcreated_by: {id : getCurrentId()},
+        qapproved_by: {id : getCurrentId()},
       })
       .subscribe({
         next: (result) => {
-          alert('Your question submission was successful.');
+          // alert('Your question submission was successful.');
           this.router.navigate(['/']);
         },
         error: (error) => handleErrorResponse(error, this.router),

@@ -37,16 +37,18 @@ public class QuestionController {
 		questionService.addQuestion(question);
 	}
 	
-	@PutMapping("/updatequestion")
-	@PreAuthorize("hasRole('user') || hasRole('admin')")
-	public void updateQuestion(@Validated @RequestBody updateQuestionStatusContent uqsc) {
-		questionService.updateQuestionStatus(uqsc.getId(), uqsc.getStatus());
-	}
+//	@PutMapping("/updatequestion")
+//	@PreAuthorize("hasRole('user') || hasRole('admin')")
+//	public void updateQuestion(@Validated @RequestBody updateQuestionStatusContent uqsc) {
+//		questionService.updateQuestionStatus(uqsc.getId(), uqsc.getStatus());
+//	}
 	
 	@PutMapping("/updatequestion/{id}/{status}")
 	@PreAuthorize("hasRole('user') || hasRole('admin')")
-	public void updateQuestion(@Validated @PathVariable("id") int id, @Validated @PathVariable("status") String status) {
-		questionService.updateQuestionStatus(id, status);
+	public void updateQuestion(@Validated @PathVariable("id") int id, 
+			@Validated @PathVariable("status") String status,
+			@Validated @RequestBody User user) {
+		questionService.updateQuestionStatus(id, status, user.getId());
 	}
 	
 	@DeleteMapping("/deletequestionbyid")

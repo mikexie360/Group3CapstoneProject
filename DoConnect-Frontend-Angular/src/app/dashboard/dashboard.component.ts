@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AnswerType, QuestionType, User, UserType } from '../constants/constants';
 import { AdminService } from '../service/admin.service';
-import { handleErrorResponse, isUserAdmin, getUserType, isUserLoggedIn  } from '../utils/util';
+import { handleErrorResponse, isUserAdmin, getUserType, isUserLoggedIn, getCurrentUsername  } from '../utils/util';
 import {DragDropModule} from '@angular/cdk/drag-drop';
 import {MatGridListModule} from '@angular/material/grid-list';
 

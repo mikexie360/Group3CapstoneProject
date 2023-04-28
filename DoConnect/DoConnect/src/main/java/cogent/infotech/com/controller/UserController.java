@@ -10,6 +10,7 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestHeader;
@@ -70,10 +71,22 @@ public class UserController {
 		return userService.getAllUsersById(id);
 	}
 	
+	@GetMapping("/getuserbyid/{id}")
+	@PreAuthorize("hasRole('user') || hasRole('admin')")
+	public User getUserById(@Validated @PathVariable("id") int id) {
+		return userService.getUserById(id);
+	}
+	
 	@GetMapping("/getallusersbyname")
 	@PreAuthorize("hasRole('user') || hasRole('admin')")
 	public List<User> getAllUsersByName(@Validated @RequestBody String name) {
 		return userService.getAllUsersByName(name);
+	}
+
+	@GetMapping("/getuserbyusername/{username}")
+	@PreAuthorize("hasRole('user') || hasRole('admin')")
+	public User getUserByUsername(@Validated @PathVariable String username) {
+		return userService.getUserByUsername(username);
 	}
 	
 	@GetMapping("/getallusersbytype")

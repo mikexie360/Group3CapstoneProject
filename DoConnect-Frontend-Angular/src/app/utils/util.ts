@@ -45,6 +45,18 @@ export const getCurrentUsername = () => {
   return undefined;
 };
 
+export const getCurrentId = () => {
+  if (isUserLoggedIn()) {
+    const token = localStorage.getItem('token');
+    if (token) {
+      const jwtData: JWTCustomPayload = jwtDecode(token);
+      return jwtData.user.id;
+    }
+    return undefined;
+  }
+  return undefined;
+};
+
 export const getToUsername = () =>{
     const item = localStorage.getItem('touser');
     if(item){

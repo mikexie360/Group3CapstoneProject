@@ -10,6 +10,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
@@ -36,11 +37,11 @@ public class Question {
 	@JsonIgnore
 	private List<Answer> answers = new ArrayList<>();
 	
-	@OneToOne(cascade = CascadeType.MERGE)
+	@ManyToOne(cascade = {CascadeType.MERGE})
 	@JoinColumn(name="qcreated_id" , referencedColumnName="id")
 	private User qcreated_by;
 	
-	@OneToOne(cascade = CascadeType.MERGE)
+	@ManyToOne(cascade = CascadeType.MERGE)
 	@JoinColumn(name="qapproved_by" , referencedColumnName="id")
 	private User qapproved_by;
 	

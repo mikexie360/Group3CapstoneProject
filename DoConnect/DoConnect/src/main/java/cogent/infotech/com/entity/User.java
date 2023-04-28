@@ -1,12 +1,24 @@
 package cogent.infotech.com.entity;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
+import lombok.Data;
+
 @Entity
+@Data
 @Table(name ="User")
 public class User {
 	
@@ -19,7 +31,21 @@ public class User {
 	private String email;
 	private String userType;
 	
+	@OneToMany(cascade= {CascadeType.MERGE, CascadeType.REMOVE}, mappedBy = "aapproved_by")
+	@JsonIgnore
+	private List<Answer> answersApproved = new ArrayList<>();
 	
+	@OneToMany(cascade= {CascadeType.MERGE, CascadeType.REMOVE}, mappedBy = "acreated_by")
+	@JsonIgnore
+	private List<Answer> answersCreated = new ArrayList<>();
+	
+	@OneToMany(cascade = {CascadeType.MERGE, CascadeType.REMOVE}, mappedBy ="qapproved_by")
+	@JsonIgnore
+	private List<Question> questionApproved = new ArrayList<>();
+	
+	@OneToMany(cascade = {CascadeType.MERGE, CascadeType.REMOVE}, mappedBy ="qcreated_by")
+	@JsonIgnore
+	private List<Question> questionCreated = new ArrayList<>();
 	
 	public User() {
 		super();

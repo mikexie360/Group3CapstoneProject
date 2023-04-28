@@ -19,9 +19,9 @@ public interface AnswerRepository extends JpaRepository<Answer, Integer> {
 	List<Answer> findByStatus(String status);
 	@Modifying
 	@Transactional
-	@Query(value ="UPDATE Answer a set a.status = ?2 where a.id = ?1"
+	@Query(value ="UPDATE Answer a set a.status = ?2, a.aapproved_id = ?3 where a.id = ?1"
 			,nativeQuery = true)
-	void updateAnswerStatus(int id, String status);
+	void updateAnswerStatus(int id, String status, int user);
 	List<Answer> findById(int id);
 	List<Answer> getAllByQuestionId(int questionId);
 

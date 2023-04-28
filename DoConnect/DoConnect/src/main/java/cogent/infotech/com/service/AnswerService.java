@@ -11,7 +11,7 @@ public interface AnswerService {
 	public List<Answer> getAllAnswersFalse();
 	public List<Answer> getAllAnswersTrue();
 	public List<Answer> getAllAnswersById(int id);
-	void updateAnswerStatus(int id, String newStatus);
+	void updateAnswerStatus(int id, String newStatus, int userid);
 	public void addAnswer(Answer answer);
 	public void updateAnswer(Answer answer);
 	public void deleteAnswerById(int id);

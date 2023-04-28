@@ -28,11 +28,11 @@ public class Answer {
 	@JoinColumn(name="question_id" , nullable=false)
 	private Question question;
 	
-	@OneToOne(cascade = CascadeType.MERGE)
+	@ManyToOne(cascade = CascadeType.MERGE)
 	@JoinColumn(name="aapproved_id" , referencedColumnName="id")
 	private User aapproved_by;
 	
-	@OneToOne(cascade = CascadeType.MERGE)
+	@ManyToOne(cascade = CascadeType.MERGE)
 	@JoinColumn(name="acreated_id" , referencedColumnName="id")
 	private User acreated_by;
 	

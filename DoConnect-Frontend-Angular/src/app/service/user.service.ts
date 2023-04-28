@@ -1,7 +1,9 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { ConditionalExpr } from '@angular/compiler';
 import { Injectable } from '@angular/core';
-import { AnswerPostType, BASE_URL, QuestionPostType, UserLoginType, UserRegisterType } from '../constants/constants';
+import { Observable } from "rxjs";
+import { AnswerPostType, BASE_URL, QuestionPostType, User, UserLoginType, UserRegisterType, UserType } from '../constants/constants';
+import { getCurrentUsername, handleErrorResponse, isUserAdmin, isUserLoggedIn } from '../utils/util';
 
 @Injectable({
   providedIn: 'root',
@@ -10,6 +12,10 @@ import { AnswerPostType, BASE_URL, QuestionPostType, UserLoginType, UserRegister
 export class UserService {
 
   constructor(private http: HttpClient) {}
+
+  getUserObjectByUsername(){
+    return this.http.get(`${BASE_URL}/getuserbyusername/${getCurrentUsername()}`);
+  }
 
   register(user: UserRegisterType) {
     return this.http.post(`${BASE_URL}/addnewuser`, user, { responseType: 'text' });
@@ -28,7 +34,7 @@ export class UserService {
   }
 
   postQuestion(question: QuestionPostType) {
-    return this.http.post(BASE_URL + '/questions', question);
+    return this.http.post(BASE_URL + '/addquestion', question);
   }
 
   postAnswer(questionId: number, answer: AnswerPostType) {

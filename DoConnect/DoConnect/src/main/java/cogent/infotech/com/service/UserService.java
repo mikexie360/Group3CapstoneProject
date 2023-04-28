@@ -14,7 +14,10 @@ public interface UserService {
 	// public List<String> getLogin(User user);
 //	public boolean userLoginVerify(User user);
 	public Optional<User> getAllUsersById(int id);
+	public User getUserById(int id);
 	public List<User> getAllUsersByName(String name);
+	public User getUserByUsername(String username);
 	public List<User> getAllUsersByUserType(String userType);
+	
 
 }

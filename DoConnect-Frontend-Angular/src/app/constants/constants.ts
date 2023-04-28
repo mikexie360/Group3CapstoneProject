@@ -40,17 +40,19 @@ export interface UserType extends Omit<UserRegisterType, 'password'> {
 
 export interface QuestionPostType {
     description_question: string;
+    status:string;
+    datetime:string;
     topic: string;
-    title: string
+    title: string;
     image_src: string;
+    qcreated_by: any;
+    qapproved_by: any;
+
 }
 
 export interface QuestionType extends QuestionPostType {
     id: number;
-    qcreated_by: User;
-    qapproved_by: User;
 	datetime: string;
-	status: string;
     answers: AnswerType;
 }
 

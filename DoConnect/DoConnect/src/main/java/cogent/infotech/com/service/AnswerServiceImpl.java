@@ -27,8 +27,8 @@ public class AnswerServiceImpl implements AnswerService{
 	}
 	
 	@Override
-	public void updateAnswerStatus(int id, String newStatus) {
-		answerRepository.updateAnswerStatus(id , newStatus);
+	public void updateAnswerStatus(int id, String newStatus, int userid) {
+		answerRepository.updateAnswerStatus(id , newStatus, userid);
 	}
 
 	@Override

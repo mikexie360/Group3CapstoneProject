@@ -75,6 +75,7 @@ export class ChatComponent implements OnInit, OnDestroy {
   }
 
   onSendMessage() {
+    if (this.message){
     this.chatMessageSend.datetime = (new Date().getTime() as any) as string;
     this.chatMessageSend.fromuser =getCurrentUsername() as string;
     this.chatMessageSend.touser = getToUsername() as string;
@@ -86,5 +87,6 @@ export class ChatComponent implements OnInit, OnDestroy {
       },
       error: (error) => console.error('Error while sending chat message. Details: ', error),
     });
+  }
   }
 }

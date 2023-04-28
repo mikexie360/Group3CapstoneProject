@@ -5,12 +5,12 @@
         <div class="py-3 text-center"><h2>Ask Question</h2></div>
         <div class="form-group py-2">
             <label for="title" class="form-label">Title*</label>
-            <input type="text" class="form-control" formControlName="title" id="title" required>
+            <input type="text" class="form-control" [value]="item.title" formControlName="title" id="title" required>
             <div
               *ngIf="(questionForm.get('title')?.dirty || questionForm.get('title')?.touched) && questionForm.get('title')?.errors?.['required']">
               Question is required
             </div>
-          </div>
+        </div>
         <div class="form-group py-2">
           <label for="topic" class="form-label">Topic*</label>
           <select class="form-select" formControlName="topic" id="topic" required>
@@ -29,7 +29,7 @@
             Question is required
           </div>
         </div>
-        <div class="form-group py-2 d-flex flex-column">
+        <!-- <div class="form-group py-2 d-flex flex-column">
           <label for="images" class="form-label">Images</label>
           <input type="file" formControlName="images" id="images" (change)="onChange($event)" />
           <small id="images" class="form-text text-muted">Only '.png' and '.jpeg' are supported</small>
@@ -38,7 +38,7 @@
           <div *ngFor="let imageName of uploadedImages" class="p-1">
             <img [attr.src]="getImageUrl(imageName) | secure | async" alt="image" height="100" />
           </div>
-        </div>
+        </div> -->
         <div class="py-2 d-flex justify-content-end">
           <button class="btn btn-success" type="submit" [disabled]="!questionForm.valid">Submit</button>
         </div>
