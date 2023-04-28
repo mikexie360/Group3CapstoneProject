@@ -70,7 +70,7 @@ public class UserServiceImpl implements UserService{
 	
 	@Override
 	public List<User> getAllUsersByUserType(String userType) {
-		return (List)userRepository.findByName(userType);
+		return (List<User>)userRepository.findByUserType(userType);
 	}
 
 }

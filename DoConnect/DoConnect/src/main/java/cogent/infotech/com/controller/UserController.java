@@ -94,5 +94,11 @@ public class UserController {
 	public List<User> getAllUsersByUserType(@Validated @RequestBody String userType) {
 		return userService.getAllUsersByUserType(userType);
 	}
+	
+	@GetMapping("/getallusersbytype/{type}")
+	@PreAuthorize("hasRole('user') || hasRole('admin')")
+	public List<User> getAllUsersByUserTypePath(@Validated @PathVariable("type") String userType) {
+		return userService.getAllUsersByUserType(userType);
+	}
 
 }

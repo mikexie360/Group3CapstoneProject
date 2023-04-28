@@ -25,6 +25,10 @@ export class UserService {
     return this.http.post(`${BASE_URL}/authenticate`, user,{responseType: 'text'});
   }
 
+  sendEmail(){
+    return this.http.post("https://mailthis.to/DoConnect","User sent an email", { responseType: 'text' });
+  }
+
   getQuestion(id: number) {
     return this.http.get(BASE_URL + '/getallquestionsbyid/' + id);
   }

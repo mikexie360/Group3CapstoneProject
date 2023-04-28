@@ -15,6 +15,12 @@ public class QuestionServiceImpl implements QuestionService{
 
 	@Autowired
 	private QuestionRepository questionRepository;
+	
+	@Autowired
+	private EmailService emailService;
+	
+	@Autowired
+	private UserServiceImpl userService;
 
 	@Override
 	public List<Question> getAllQuestionsFalse() {
@@ -28,6 +34,15 @@ public class QuestionServiceImpl implements QuestionService{
 	
 	@Override
 	public void addQuestion(Question question) {
+		ArrayList<User> admins = (ArrayList<User>)userService.getAllUsersByUserType("admin");
+		for(int i = 0; i < admins.size(); i++) {
+			emailService.sendEmail(admins.get(i).getEmail(),
+					"Dear "+ admins.get(i).getUsername()+",\n\n"
+					+"A new question needs to be approved.\n"
+					+ "Question title: " + question.getTitle() + "\nQuestion Description" + question.getDescription_question()+"\n"
+					+"\nThank you,\nFrom DoConnect Email Service.",
+					"A new question needs to be approved");
+		}
 		questionRepository.save(question);
 	}
 	
