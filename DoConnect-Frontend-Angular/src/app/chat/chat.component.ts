@@ -47,7 +47,9 @@ export class ChatComponent implements OnInit, OnDestroy {
       this.fetchChatMessages();
       this.interval = window.setInterval(() => {
         this.fetchChatMessages();
-      }, CHAT_REFRESH_FRQUENCY_IN_SECONDS * 1000);
+      }, 
+      CHAT_REFRESH_FRQUENCY_IN_SECONDS * 1000
+      );
     }
   }
 
@@ -62,7 +64,7 @@ export class ChatComponent implements OnInit, OnDestroy {
     this.futu.fromuser = getCurrentUsername() as string;
     this.futu.touser = getToUsername() as string;
 
-    console.log(this.futu);
+    // console.log(this.futu);
     this._chatservice.getChatMessagesList(this.futu.fromuser,this.futu.touser).subscribe({
       next: (results:any) => (
           // console.log(results)
@@ -71,7 +73,7 @@ export class ChatComponent implements OnInit, OnDestroy {
       ),
       error: (error:any) => console.error('Error while fetching chat messages list. Details: ', error),
     });
-    console.log(this.futuResults);
+    // console.log(this.futuResults);
   }
 
   onSendMessage() {
