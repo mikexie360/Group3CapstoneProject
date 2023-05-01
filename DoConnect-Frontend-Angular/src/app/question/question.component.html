@@ -68,6 +68,10 @@
                 <strong>Approved By</strong>
                 <span>{{ answerData?.aapproved_by.username }}</span>
               </div>
+              <div class="d-flex flex-row justify-content-between">
+                <strong>Answer</strong>
+                <span>{{ answerData?.description_answer }}</span>
+              </div>
               <!-- <div class="d-flex flex-wrap flex-row justify-content-end">
                 <div *ngFor="let imageName of answerData?.img_src" class="p-1">
                   <img [attr.src]="getImageUrl(imageName) | secure | async" alt="image" height="100" />

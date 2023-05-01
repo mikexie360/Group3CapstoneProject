@@ -1,20 +1,25 @@
 package cogent.infotech.com.service;
 
-import java.util.List;
 import java.util.*;
-import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import cogent.infotech.com.entity.*;
 import cogent.infotech.com.repository.AnswerRepository;
+import cogent.infotech.com.repository.UserRepository;
 
 @Service
 public class AnswerServiceImpl implements AnswerService{
 
 	@Autowired
 	private AnswerRepository answerRepository;
+	
+	@Autowired
+	private UserService userService;
+	
+	@Autowired
+	private EmailService emailService;
 
 	@Override
 	public List<Answer> getAllAnswersFalse() {
@@ -43,6 +48,15 @@ public class AnswerServiceImpl implements AnswerService{
 	
 	@Override
 	public void addAnswer(Answer answer) {
+		ArrayList<User> admins = (ArrayList<User>)userService.getAllUsersByUserType("admin");
+		for(int i = 0; i < admins.size(); i++) {
+			emailService.sendEmail(admins.get(i).getEmail(),
+					"Dear "+ admins.get(i).getUsername()+",\n\n"
+					+"A new question needs to be approved.\n\n"
+					+ "Question Description: " + answer.getDescription_answer() + "\n"
+					+"\nThank you,\nFrom DoConnect Email Service.",
+					"A new question needs to be approved");
+		}
 		answerRepository.save(answer);
 	}
 	
