@@ -80,7 +80,11 @@ public class QuestionController {
 	public List<Question> getAllQuestionsById(@Validated @RequestBody int id) {
 		return questionService.getAllQuestionsById(id);
 	}
-
+	@GetMapping("/getquestionbyid/{id}")
+	@PreAuthorize("hasRole('user') || hasRole('admin')")
+	public Question getQuestionById(@Validated @PathVariable("id") int id) {
+		return questionService.getAllQuestionsById(id).get(0);
+	}
 }
 
 class updateQuestionStatusContent {

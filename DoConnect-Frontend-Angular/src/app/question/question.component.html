@@ -9,7 +9,7 @@
           </div>
           <div class="d-flex flex-row justify-content-between">
             <strong>Posted By</strong>
-            <span>{{ questionData?.qcreated_by }}</span>
+            <span>{{ questionData?.qcreated_by?.username }}</span>
           </div>
           <div class="d-flex flex-row justify-content-between">
             <strong>Posted At</strong>
@@ -17,7 +17,7 @@
           </div>
           <div class="d-flex flex-row justify-content-between">
             <strong>Approved By</strong>
-            <span>{{ questionData?.qapproved_by }}</span>
+            <span>{{ questionData?.qapproved_by.username }}</span>
           </div>
           <div class="d-flex flex-wrap flex-row justify-content-end">
             <div *ngFor="let imageName of questionData?.image_src" class="p-1">
@@ -35,15 +35,16 @@
             </div>
           </div>
           <div class="form-group py-2 d-flex flex-column">
-            <label for="images" class="form-label">Images</label>
-            <input type="file" formControlName="images" id="images" (change)="onChange($event)" />
-            <small id="images" class="form-text text-muted">Only '.png' and '.jpeg' are supported</small>
+            <label for="image" class="form-label">Image</label>
+            <input type="text" formControlName="image" id="image" (change)="onChange($event)" />
+            <img [src]="answerForm.value.image" width=20% style="float: right;">
+            <!-- <small id="image" class="form-text text-muted">Only '.png' and '.jpeg' are supported</small> -->
           </div>
-          <div class="form-group py-1 d-flex flex-wrap">
-            <div *ngFor="let imageName of uploadedImages" class="p-1">
+          <!-- <div class="form-group py-2 d-flex flex-column">
+            <div *ngFor="let imageName of uploadedImage" class="p-1">
               <img [attr.src]="getImageUrl(imageName) | secure | async" alt="image" height="100" />
             </div>
-          </div>
+          </div> -->
           <div class="py-2 d-flex justify-content-end">
             <button class="btn btn-success" type="submit" [disabled]="!answerForm.valid">Submit</button>
           </div>
@@ -57,20 +58,23 @@
               <strong class="mb-2 text-center">{{ answerData.description_answer }}</strong>
               <div class="d-flex flex-row justify-content-between">
                 <strong>Posted By</strong>
-                <span>{{ answerData.acreated_by }}</span>
+                <span>{{ answerData?.acreated_by?.username }}</span>
               </div>
               <div class="d-flex flex-row justify-content-between">
                 <strong>Posted At</strong>
-                <span>{{ answerData.datetime | date:'medium' }}</span>
+                <span>{{ answerData?.datetime | date:'medium' }}</span>
               </div>
               <div class="d-flex flex-row justify-content-between">
                 <strong>Approved By</strong>
-                <span>{{ answerData.aapproved_by }}</span>
+                <span>{{ answerData?.aapproved_by.username }}</span>
               </div>
-              <div class="d-flex flex-wrap flex-row justify-content-end">
+              <!-- <div class="d-flex flex-wrap flex-row justify-content-end">
                 <div *ngFor="let imageName of answerData?.img_src" class="p-1">
                   <img [attr.src]="getImageUrl(imageName) | secure | async" alt="image" height="100" />
-                </div>
+                </div> -->
+                <div class="d-flex flex-row justify-content-between">
+                    <strong>Image</strong>
+                    <span><img [src]="answerData.img_src" onError="this.src ='assets/images/error.png'" width=80% style="float: right;"></span>
               </div>
             </div>
           </div>

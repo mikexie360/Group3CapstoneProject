@@ -30,7 +30,8 @@
             <th>Posted At</th>
             <th>Status</th>
             <th>Image</th>
-            <th>Actions</th>
+            <th>Approve</th>
+            <th>Delete</th>
           </thead>
           <tbody>
             <tr *ngFor="let question of questionList">
@@ -41,18 +42,22 @@
               <td class="align-middle">{{ question.qcreated_by.username }}</td>
               <td class="align-middle">{{ question.datetime | date: 'medium' }}</td>
               <td class="align-middle">{{ question.status }}</td>
-              <td class="align-middle"><img [src]="question.image_src"></td>
+              <td class="align-middle"><img [src]="question.image_src" onError="this.src ='assets/images/error.png'" width=80% style="float: right;"></td>
               <td class="align-middle">
                 <button
                   class="btn btn-success mx-1"
                   (click)="onApproveQuestion(question.id)"
                 >
+                    Approve
                   <i class="fa fa-check fa-lg" aria-hidden="true"></i>
                 </button>
+              </td>
+              <td class="align-middle">
                 <button
                   class="btn btn-danger mx-1"
                   (click)="onDeleteQuestion(question.id)"
                 >
+                    Delete
                   <i class="fa fa-trash fa-lg" aria-hidden="true"></i>
                 </button>
               </td>
@@ -73,28 +78,33 @@
             <th>Posted At</th>
             <th>status</th>
             <th>Image</th>
-            <th>Actions</th>
+            <th>Approve</th>
+            <th>Delete</th>
           </thead>
           <tbody>
             <tr *ngFor="let answer of answerList">
               <td class="align-middle">{{ answer.id }}</td>
               <td class="align-middle">{{ answer.question.description_question }}</td>
               <td class="align-middle">{{ answer.description_answer }}</td>
+              <td class="align-middle">{{ answer?.acreated_by?.username }}</td>
               <td class="align-middle">{{ answer.datetime | date:'medium' }}</td>
-              <td class="align-middle">{{ answer.acreated_by }}</td>
               <td class="align-middle">{{ answer.status }}</td>
-              <td class="align-middle">{{ answer.img_src }}</td>
+              <td class="align-middle"><img [src]="answer.img_src" onError="this.src ='assets/images/error.png'" width=80% style="float: right;"></td>
               <td class="align-middle">
                 <button
                   class="btn btn-success mx-1"
                   (click)="onApproveAnswer(answer.id)"
                 >
+                    Approve
                   <i class="fa fa-check fa-lg" aria-hidden="true"></i>
                 </button>
+              </td>
+                <td class="align-middle">
                 <button
                   class="btn btn-danger mx-1"
                   (click)="onDeleteAnswer(answer.id)"
                 >
+                    Delete
                   <i class="fa fa-trash fa-lg" aria-hidden="true"></i>
                 </button>
               </td>

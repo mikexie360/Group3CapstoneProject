@@ -41,6 +41,8 @@ export class DashboardComponent implements OnInit {
       next: (result) => (this.questionList = result as QuestionType[]),
       error: (err) => handleErrorResponse(err, this.router),
     });
+    console.log("Getting Unapproved Questions");
+    console.log(this.questionList);
   }
 
   getUnapprovedAnswers() {
@@ -52,7 +54,7 @@ export class DashboardComponent implements OnInit {
         ),
       error: (err) => handleErrorResponse(err, this.router),
     });
-    console.log(this.answerList);
+    console.log("Getting Unapproved Answers");
   }
 
   getUsers() {

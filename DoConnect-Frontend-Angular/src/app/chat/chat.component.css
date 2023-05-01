@@ -2,7 +2,10 @@
     color: black;
     height: max(50vh, 450px);
     width:  max(30vw, 300px);
-    background-color: aliceblue;
+    background: #ED213A;  /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #93291E, #ED213A);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #e56e61, #f76173); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    
     padding: 0.5rem;
     /* position: absolute; */
     bottom: 8rem;
@@ -25,8 +28,11 @@
   }
   
   .message {
-    background-image: linear-gradient(to right top, #004dc0, #0e2a6c);
-    color: rgb(190, 205, 255);
+    background: #333333;  /* fallback for old browsers */
+    background: -webkit-linear-gradient(to top, #dd1818, #333333);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to top, #d14a4a, #f34444); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+        color: rgb(190, 205, 255);
+
     margin-bottom: 0.5rem;
     border-radius: 0.5rem;
     padding: 0.5rem;

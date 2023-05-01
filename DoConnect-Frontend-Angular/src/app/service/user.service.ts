@@ -2,7 +2,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { ConditionalExpr } from '@angular/compiler';
 import { Injectable } from '@angular/core';
 import { Observable } from "rxjs";
-import { AnswerPostType, BASE_URL, QuestionPostType, User, UserLoginType, UserRegisterType, UserType } from '../constants/constants';
+import { AnswerPostType, BASE_URL, QuestionPostType, User, UserLoginType, UserRegisterType, UserType, AnswerType } from '../constants/constants';
 import { getCurrentUsername, handleErrorResponse, isUserAdmin, isUserLoggedIn } from '../utils/util';
 
 @Injectable({
@@ -13,8 +13,8 @@ export class UserService {
 
   constructor(private http: HttpClient) {}
 
-  getUserObjectByUsername(){
-    return this.http.get(`${BASE_URL}/getuserbyusername/${getCurrentUsername()}`);
+  getUserObjectByUsername():Observable<UserType>{
+    return this.http.get<UserType>(`${BASE_URL}/getuserbyusername/${getCurrentUsername()}`);
   }
 
   register(user: UserRegisterType) {
@@ -41,16 +41,20 @@ export class UserService {
     return this.http.post(BASE_URL + '/addquestion', question);
   }
 
-  postAnswer(questionId: number, answer: AnswerPostType) {
-    return this.http.post(BASE_URL + '/questions/' + questionId + '/answers', answer);
+  getQuestionById(id:number) {
+    return this.http.get(BASE_URL + `/getquestionbyid/${id}`);
+  }
+
+  postAnswer(answer: AnswerPostType) {
+    return this.http.post(BASE_URL + `/addanswer`, answer);
   }
 
   searchQuestion(query: string, topic: string) {
     return this.http.get(`${BASE_URL}/questions?search=${query}&topic=${topic}`);
   }
 
-  getAnswers(quesId: number) {
-    return this.http.get(BASE_URL + '/questions/' + quesId + '/answers');
+  getAnswers(questionId: number) {
+    return this.http.get(BASE_URL + `/getallanswerbyquestionid/${questionId}`);
   }
 
   logout() {

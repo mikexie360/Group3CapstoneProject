@@ -59,17 +59,24 @@ export interface QuestionType extends QuestionPostType {
 export interface AnswerPostType {
     description_answer: string;
     img_src: string;
+    acreated_by: any;
+	datetime: string;
+	aapproved_by: any;
+	status: string;
+    question_by: any;
+    question: any;
 }
 
 export interface AnswerType {
     id: number;
     description_answer: string;
     img_src: string;
-    acreated_by: User;
+    acreated_by: any;
 	datetime: string;
-	aapproved_by: User;
+	aapproved_by: any;
 	status: string;
     question: QuestionType;
+    question_by: any;
 }
 export interface chatmessage{
     id:number;

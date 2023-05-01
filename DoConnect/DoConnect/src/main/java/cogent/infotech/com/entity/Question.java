@@ -10,7 +10,7 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
+import javax.persistence.JoinColumn;import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
@@ -28,7 +28,8 @@ public class Question {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int id;
 	private String description_question;
-	@Column(length = 10000)
+	@Lob
+	@Column(name="image_src", columnDefinition="BLOB")
 	private String image_src;
 	private String datetime;
 	private String status;
@@ -40,7 +41,7 @@ public class Question {
 	private List<Answer> answers = new ArrayList<>();
 	
 	@ManyToOne(cascade = {CascadeType.MERGE})
-	@JoinColumn(name="qcreated_id" , referencedColumnName="id")
+	@JoinColumn(name="qcreated_by" , referencedColumnName="id")
 	private User qcreated_by;
 	
 	@ManyToOne(cascade = CascadeType.MERGE)

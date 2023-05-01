@@ -1,5 +1,5 @@
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectorRef  } from '@angular/core';
 import { Router } from '@angular/router';
 import { QUESTIONS_TOPICS, QuestionType } from '../constants/constants';
 import { UserService } from '../service/user.service';
@@ -20,8 +20,10 @@ export class HomeComponent implements OnInit {
   userList: User[] = [];
   mode:string="";
   questionList: QuestionType[] = [];
+
   search: string = '';
   topic: string = 'All';
+
   topicOptions: string[] = [ 'All', ...QUESTIONS_TOPICS ];
   chatbox = 'block';
   userType = getUserType();
@@ -30,14 +32,15 @@ export class HomeComponent implements OnInit {
   chatButton: string = OPEN_CHAT_BUTTON_LABEL;
 
   constructor(private _userService: UserService,
-    private router: Router, private _adminService: AdminService) {}
+    private router: Router, private _adminService: AdminService, private changeDetection: ChangeDetectorRef
+    ) {}
 
   ngOnInit(): void {
     this.mode="questions";
     if(isUserLoggedIn()){
       this._userService.getApprovedQuestions().subscribe({
         next: (result) => (this.questionList = result as QuestionType[]),
-        error: (error: HttpErrorResponse) => handleErrorResponse(error, this.router),
+        error: (error: HttpErrorResponse) => handleErrorResponse(error, this.router)
       });
     }
   }
@@ -75,16 +78,60 @@ export class HomeComponent implements OnInit {
     this.router.navigate([`/question/${id}`]);
   }
   onChat(touser: string) {
-    // if (confirm('Are you sure you want to remove this user? This action cannot be reverted.')) {
-    //   this._adminService.deleteUser(id).subscribe({
-    //     next: (res) => {
-    //       this.getUsers()
-    //     },
-    //     error: (err) => handleErrorResponse(err, this.router),
-    //   });
-    // }
+
     localStorage.setItem("touser", touser);
   }
+  onTopicSelected(value:any){
+    this.topic = value as string;
+    console.log(this.topic);
+    console.log(this.search);
+  }
+
+  onSearch(){
+
+    if(isUserLoggedIn()){
+      this._userService.getApprovedQuestions().subscribe({
+        next: (result) => {
+          this.questionList = result as QuestionType[];
+          if (this.topic == "All"){
+
+          } else {
+            for(let i = 0; i<this.questionList.length; i++){
+              if (this.topic != this.questionList[i].topic){
+                this.questionList.splice(i,1);
+                i = i-1;
+              }
+            }
+          }
+          if ( this.search == ''){
+
+          } else {
+            const regex = this.search ;
+            for(let i = 0; i<this.questionList.length; i++){
+              if (!(((this.questionList[i].description_question).match(regex)) 
+                || ((this.questionList[i].title).match(regex))
+                || ((this.questionList[i].topic).match(regex))))
+                {
+                this.questionList.splice(i,1);
+                i = i-1;
+              }
+            }
+          }
+
+          this.changeDetection.detectChanges();
+        },
+        error: (error: HttpErrorResponse) => handleErrorResponse(error, this.router)
+      });
+    }
+
+    // setTimeout(() => {
+    // }, 500);
+
+  }
+
+  // public trackItem (index: number, item:QuestionType) {
+  //   return item.id;;
+  // }
   // searchHelper(query: string, topic: string) {
   //   this._userService.searchQuestion(query, (topic === 'All') ? '' : topic).subscribe({
   //     next: (result) => (this.questionList = result as QuestionType[]),

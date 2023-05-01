@@ -71,9 +71,9 @@ public class AnswerController {
 		return answerService.getAllAnswersTrue();
 	}
 	
-	@GetMapping("/getallanswerbyquestionid")
+	@GetMapping("/getallanswerbyquestionid/{id}")
 	@PreAuthorize("hasRole('user') || hasRole('admin')")
-	public List<Answer> getAllAnswersByQuestionId(@Validated @RequestBody int questionid) {
+	public List<Answer> getAllAnswersByQuestionId(@Validated @PathVariable("id") int questionid) {
 		return answerService.getAllAnswersByQuestionId(questionid);
 	}
 	

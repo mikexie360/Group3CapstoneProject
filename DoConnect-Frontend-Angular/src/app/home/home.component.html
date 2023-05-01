@@ -30,19 +30,36 @@
         </button>
       </div>
     </div>
+        <select class='select-option' #topicSelect (change)='onTopicSelected(topicSelect.value)' style="border-radius: 0.5rem; margin-right: 1rem;">
+            <option class='option' *ngFor='let option of topicOptions' [value]="option">{{ option }}</option>
+        </select>
+        <input [(ngModel)]="search" type="search" class="form-control" placeholder="Search" aria-label="Search" aria-describedby="search-addon" style="border-top-left-radius: 0.5rem; border-bottom-left-radius: 0.5rem; transition: none;" />
+        <button class="btn btn-info text-white" id="search-addon" (click)="onSearch()">Search
+            <i class="fa fa-search fa-lg"></i>
+        </button>
     <div class="row pt-2">
       <div *ngIf="mode == 'questions'">
+        <div>
+
+        </div>
         <div *ngIf="questionList.length === 0" class="d-flex justify-content-center mt-2">
           <span>No questions</span>
         </div>
         <div class="row d-flex flex-wrap mt-2">
-            <div *ngFor="let question of questionList" class="col-lg-4 col-md-6 p-2">
+
+
+            <div *ngFor="let question of questionList;" class="col-lg-4 col-md-6 p-2">
               <div class="bg-white text-dark p-2 question-card">
+                <strong>Question</strong>
                 <p class="mb-0">{{ question.description_question }}</p>
                 <div class="d-flex flex-column mt-2">
                   <div class="d-flex flex-row justify-content-between">
-                    <strong>Topic</strong>
+                    <Strong>Topic</Strong>
                     <span>{{ question.topic }}</span>
+                  </div>
+                  <div class="d-flex flex-row justify-content-between">
+                    <Strong>Image</Strong>
+                    <span><img [src]="question.image_src" onError="this.src ='assets/images/error.png'" width=80% style="float: right;"></span>
                   </div>
                   <div class="d-flex flex-row justify-content-between">
                     <strong>Posted By</strong>
@@ -60,6 +77,8 @@
                 </div>
               </div>
             </div>
+
+
           </div>
       </div>
     </div>
