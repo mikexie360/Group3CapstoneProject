@@ -52,10 +52,10 @@ public class AnswerServiceImpl implements AnswerService{
 		for(int i = 0; i < admins.size(); i++) {
 			emailService.sendEmail(admins.get(i).getEmail(),
 					"Dear "+ admins.get(i).getUsername()+",\n\n"
-					+"A new question needs to be approved.\n\n"
-					+ "Question Description: " + answer.getDescription_answer() + "\n"
+					+"A new answer needs to be approved.\n\n"
+					+ "Answer Description: " + answer.getDescription_answer() + "\n"
 					+"\nThank you,\nFrom DoConnect Email Service.",
-					"A new question needs to be approved");
+					"A new answer needs to be approved");
 		}
 		answerRepository.save(answer);
 	}
