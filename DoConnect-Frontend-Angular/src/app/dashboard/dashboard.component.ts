@@ -28,6 +28,8 @@ export class DashboardComponent implements OnInit {
   isUserLoggedIn: boolean = isUserLoggedIn();
   chatButton: string = OPEN_CHAT_BUTTON_LABEL;
 
+  isloading = false;
+
   constructor(private _adminService: AdminService, private router: Router) {}
 
   ngOnInit(): void {
@@ -74,10 +76,18 @@ export class DashboardComponent implements OnInit {
   }
 
   onDelete(id: number) {
+    this.isloading = true;
+
     // if (confirm('Are you sure you want to remove this user? This action cannot be reverted.')) {
       this._adminService.deleteUser(id).subscribe({
-        next: (res) => this.getUsers(),
-        error: (err) => handleErrorResponse(err, this.router),
+        next: (res) => {
+          this.isloading = false;
+          this.getUsers();
+        },
+        error: (err) => {
+          this.isloading = false;
+          handleErrorResponse(err, this.router);
+        },
       });
     // }
   }
@@ -94,33 +104,60 @@ export class DashboardComponent implements OnInit {
     localStorage.setItem("touser", touser);
   }
   onApproveQuestion(id: number) {
+    this.isloading = true;
     this._adminService.approveQuestion(id).subscribe({
-      next: (res) => this.getUnapprovedQuestions(),
-      error: (err) => handleErrorResponse(err, this.router),
+      next: (res) => {
+        this.isloading = false;
+        this.getUnapprovedQuestions();
+      },
+      error: (err) => {
+        this.isloading = false;
+        handleErrorResponse(err, this.router);
+      },
     });
   }
 
   onDeleteQuestion(id: number) {
+    this.isloading = true;
     // if (confirm('Are you sure? This action cannot be reverted.')) {
       this._adminService.deleteQuestion(id).subscribe({
-        next: (res) => this.getUnapprovedQuestions(),
-        error: (err) => handleErrorResponse(err, this.router),
+        next: (res) => {
+          this.isloading = false;
+          this.getUnapprovedQuestions();},
+        error: (err) => {
+          this.isloading = false;
+          handleErrorResponse(err, this.router);},
       });
     // }
   }
 
   onApproveAnswer(id:number) {
+    this.isloading = true;
     this._adminService.approveAnswer(id).subscribe({
-      next: (res) => this.getUnapprovedAnswers(),
-      error: (err) => handleErrorResponse(err, this.router),
+      next: (res) => {
+        this.isloading = false;
+        this.getUnapprovedAnswers();
+      },
+      error: (err) => {
+        this.isloading = false;
+        handleErrorResponse(err, this.router);
+      },
     });
   }
 
   onDeleteAnswer(id:number) {
+    this.isloading = true;
     // if (confirm('Are you sure? This action cannot be reverted.')) {
       this._adminService.deleteAnswer(id).subscribe({
-        next: (res) => this.getUnapprovedAnswers(),
-        error: (err) => handleErrorResponse(err, this.router),
+        next: (res) => {
+          this.isloading = false;
+          this.getUnapprovedAnswers();
+        }
+          ,
+        error: (err) => {
+          this.isloading = false;
+          handleErrorResponse(err, this.router);
+        },
       });
     // }
   }

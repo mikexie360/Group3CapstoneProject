@@ -19,6 +19,8 @@ export class PostQuestionComponent implements OnInit {
   uploadedImages: string = "";
   path:string ="";
 
+  isloading = false;
+
   constructor(private _uploadService: UploadImageService, private _userService: UserService, private router: Router) {
     this.questionForm = new FormGroup({
       title: new FormControl(),
@@ -53,7 +55,8 @@ export class PostQuestionComponent implements OnInit {
   //   return `${BASE_URL}/images/${imageName}`;
   // }
 
-  submit() {
+  submit(): void {
+    this.isloading = true;
     console.log(Date.now());
     this._userService
       .postQuestion({
@@ -69,11 +72,14 @@ export class PostQuestionComponent implements OnInit {
       })
       .subscribe({
         next: (result) => {
+          this.isloading = false;
           // alert('Your question submission was successful.');
           this.router.navigate(['/']);
         },
-        error: (error) => handleErrorResponse(error, this.router),
+        error: (error) => {
+          this.isloading = false;
+          handleErrorResponse(error, this.router);}
       });
-  }
 
+  }
 }

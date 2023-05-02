@@ -19,6 +19,9 @@ export class QuestionComponent implements OnInit {
   questionId: number | undefined;
   uploadedImage: string = "";
 
+  isloading = false;
+
+
   constructor(private _userService: UserService, private activatedRoute: ActivatedRoute, private router: Router, private _uploadService: UploadImageService) {}
 
   ngOnInit(): void {
@@ -72,6 +75,8 @@ export class QuestionComponent implements OnInit {
   }
 
   submit() {
+    this.isloading = true;
+
     console.log({
       description_answer: this.answerForm.value.answer,
       img_src: this.answerForm.value.image,
@@ -97,10 +102,14 @@ export class QuestionComponent implements OnInit {
       })
       .subscribe({
         next: (result) => {
+          this.isloading = false;
           // alert('Your answer submission was successful.');
           this.router.navigate(['/']);
         },
-        error: (error) => handleErrorResponse(error, this.router),
+        error: (error) => {
+          this.isloading = false;
+          handleErrorResponse(error, this.router);
+        }
       });
     }
   }
