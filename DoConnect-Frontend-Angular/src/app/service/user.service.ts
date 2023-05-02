@@ -60,4 +60,8 @@ export class UserService {
   logout() {
     return this.http.get(BASE_URL + '/signout', { responseType: 'text' });
   }
+
+  getUserByUsername(username:string): any {
+    return this.http.get(BASE_URL + `/getuserbyusername/${username}`)
+  }
 }

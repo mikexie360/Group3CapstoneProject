@@ -103,7 +103,7 @@ export class QuestionComponent implements OnInit {
       .subscribe({
         next: (result) => {
           this.isloading = false;
-          // alert('Your answer submission was successful.');
+          alert('Your answer submission was successful.');
           this.router.navigate(['/']);
         },
         error: (error) => {

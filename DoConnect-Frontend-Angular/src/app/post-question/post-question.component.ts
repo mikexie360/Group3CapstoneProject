@@ -73,7 +73,7 @@ export class PostQuestionComponent implements OnInit {
       .subscribe({
         next: (result) => {
           this.isloading = false;
-          // alert('Your question submission was successful.');
+          alert('Your question submission was successful.');
           this.router.navigate(['/']);
         },
         error: (error) => {

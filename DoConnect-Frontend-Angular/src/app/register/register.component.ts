@@ -14,6 +14,8 @@ import { handleErrorResponse } from '../utils/util';
 export class RegisterComponent implements OnInit {
   public registerForm !: FormGroup;
 
+  usernameExists:boolean = false;
+  alreadyExistingUsername = "";
   constructor(private _userService: UserService, private router: Router) {}
 
   ngOnInit(): void {
@@ -29,6 +31,29 @@ export class RegisterComponent implements OnInit {
   });
   }
 
+  checkUsernameAlreadyExists(){
+    this._userService
+      .getUserByUsername(this.registerForm.value.username)
+      .subscribe({
+        next : (result:any) => {
+          if(result.username == "" || result.username == null){
+            this.usernameExists = false;
+          }else {
+            this.alreadyExistingUsername = result.username;
+            this.usernameExists = true;
+          }
+        },
+        error : (error:any) => {
+          (error: HttpErrorResponse) =>             
+            this.usernameExists = false;
+          ;
+        }
+      });
+  }
+  checkUsernameAlreadyExistsReset() {
+    this.usernameExists = false;
+    this.alreadyExistingUsername = "";
+  }
   register() {
     // let isAdmin = this.registerForm.value.role === 'user' ? "user" : "admin";
     this._userService

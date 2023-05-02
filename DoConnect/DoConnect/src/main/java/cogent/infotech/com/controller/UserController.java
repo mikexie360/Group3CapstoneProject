@@ -83,9 +83,9 @@ public class UserController {
 		return userService.getAllUsersByName(name);
 	}
 
+	// check to see if user exists.
 	@GetMapping("/getuserbyusername/{username}")
-	@PreAuthorize("hasRole('user') || hasRole('admin')")
-	public User getUserByUsername(@Validated @PathVariable String username) {
+	public User getUserByUsername(@Validated @PathVariable("username") String username) {
 		return userService.getUserByUsername(username);
 	}
 	

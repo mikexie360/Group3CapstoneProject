@@ -57,9 +57,13 @@
             <div *ngFor="let question of questionList;" class="col-lg-4 col-md-6 p-2">
               <div class="bg-white text-dark p-2 question-card">
                 <strong>Question</strong>
-                <p class="mb-0">{{ question.description_question }}</p>
+                <p class="mb-0">{{ question.title }}</p>
                 <div class="d-flex flex-column mt-2">
-                  <div class="d-flex flex-row justify-content-between">
+                    <!-- <div class="d-flex flex-row justify-content-between">
+                        <Strong>Question Description</Strong>
+                        <span>{{ question.description_question }}</span>
+                      </div> -->
+                    <div class="d-flex flex-row justify-content-between">
                     <Strong>Topic</Strong>
                     <span>{{ question.topic }}</span>
                   </div>
