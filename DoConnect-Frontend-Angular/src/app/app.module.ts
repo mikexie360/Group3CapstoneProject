@@ -50,6 +50,17 @@ import {MatGridListModule} from '@angular/material/grid-list';
     DragDropModule,
     MatGridListModule
   ],
+  exports: [
+    BrowserModule,
+    AppRoutingModule,
+    FormsModule,
+    HttpClientModule,
+    AngularEditorModule,
+    ReactiveFormsModule,
+    BrowserAnimationsModule,
+    DragDropModule,
+    MatGridListModule
+  ],
   providers: [authInterceptorProviders],
   bootstrap: [AppComponent]
 })

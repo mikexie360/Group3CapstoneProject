@@ -18,7 +18,7 @@ import cogent.infotech.com.service.CustomerServiceImpl;
 import cogent.infotech.com.entity.*;
 
 
-@CrossOrigin
+@CrossOrigin()
 @RestController
 public class CustomerController {
 	

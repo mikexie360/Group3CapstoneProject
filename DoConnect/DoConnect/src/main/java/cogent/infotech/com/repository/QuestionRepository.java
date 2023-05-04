@@ -20,7 +20,7 @@ public interface QuestionRepository extends JpaRepository<Question, Integer> {
 	@Modifying
 	@Transactional
 	@Query(value =
-			"UPDATE Question q set q.status = ?2, q.qapproved_by = ?3 where q.id = ?1"
+			"UPDATE question q set q.status = ?2, q.qapproved_by = ?3 where q.id = ?1"
 			,nativeQuery = true)
 	void updateQuestionStatus(int id, String status, int userid);
 	List<Question> findById(int id);

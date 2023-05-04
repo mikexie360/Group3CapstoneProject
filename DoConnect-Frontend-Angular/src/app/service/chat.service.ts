@@ -9,21 +9,20 @@ import { Observable } from 'rxjs';
 
 export class ChatService {
 
-  baseUrl = BASE_URL;
 
   constructor(private http: HttpClient) {}
 
   createChat(data: any) {
-    return this.http.post(this.baseUrl + '/messages', data);
+    return this.http.post(BASE_URL + '/messages', data);
   }
 
   addChat(data: any) {
-    return this.http.post(this.baseUrl + '/chat/addchat', data);
+    return this.http.post(BASE_URL + '/chat/addchat', data);
   }
 
 
   getChatMessagesList(fromuser:string, touser:string) {
-    return this.http.get(this.baseUrl + `/chat/getallchatbetweentwousers/${fromuser}/${touser}`);
+    return this.http.get(BASE_URL + `/chat/getallchatbetweentwousers/${fromuser}/${touser}`);
   }
 }
 

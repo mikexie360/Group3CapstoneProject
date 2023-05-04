@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.security.access.prepost.PreAuthorize;
 
-@CrossOrigin
+@CrossOrigin()
 @RestController
 public class WelcomeController {
 

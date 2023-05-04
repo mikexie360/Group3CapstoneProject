@@ -1,6 +1,7 @@
 import { JwtPayload } from "jwt-decode";
 
-export const BASE_URL = 'http://localhost:8080';
+export const BASE_URL = 'http://3.143.244.76:8080';
+// export const BASE_URL = 'http://localhost:8080';
 
 export interface JWTCustomPayload extends JwtPayload {
     user: {

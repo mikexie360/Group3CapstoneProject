@@ -24,7 +24,7 @@ import cogent.infotech.com.entity.Answer;
 import cogent.infotech.com.entity.Question;
 import cogent.infotech.com.entity.User;
 
-@CrossOrigin(origins="http://localhost:4200")
+@CrossOrigin()
 @RestController
 public class QuestionController {
 	
@@ -49,6 +49,21 @@ public class QuestionController {
 			@Validated @PathVariable("status") String status,
 			@Validated @RequestBody User user) {
 		questionService.updateQuestionStatus(id, status, user.getId());
+	}
+	
+	@PutMapping("/updatequestion/{id}/{status}/{userid}")
+	@PreAuthorize("hasRole('user') || hasRole('admin')")
+	public void updateQuestion(@Validated @PathVariable("id") int id, 
+			@Validated @PathVariable("status") String status,
+			@Validated @PathVariable("userid") int userid) {
+		questionService.updateQuestionStatus(id, status, userid);
+	}
+	
+	@PutMapping("/updatequestion/{id}/true/{userid}")
+	@PreAuthorize("hasRole('user') || hasRole('admin')")
+	public void updateQuestion(@Validated @PathVariable("id") int id, 
+			@Validated @PathVariable("userid") int userid) {
+		questionService.updateQuestionStatus(id,"true", userid);
 	}
 	
 	@DeleteMapping("/deletequestionbyid")

@@ -2,7 +2,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { ConditionalExpr } from '@angular/compiler';
 import { Injectable } from '@angular/core';
 import { Observable } from "rxjs";
-import { AnswerPostType, BASE_URL, QuestionPostType, User, UserLoginType, UserRegisterType, UserType, AnswerType } from '../constants/constants';
+import { AnswerPostType, QuestionPostType, BASE_URL, User, UserLoginType, UserRegisterType, UserType, AnswerType } from '../constants/constants';
 import { getCurrentUsername, handleErrorResponse, isUserAdmin, isUserLoggedIn } from '../utils/util';
 
 @Injectable({

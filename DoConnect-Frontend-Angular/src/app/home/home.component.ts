@@ -36,6 +36,9 @@ export class HomeComponent implements OnInit {
     ) {}
 
   ngOnInit(): void {
+    if (getUserType() == "admin"){
+      this.router.navigate([`/dashboard`]);
+    }
     this.mode="questions";
     if(isUserLoggedIn()){
       this._userService.getApprovedQuestions().subscribe({

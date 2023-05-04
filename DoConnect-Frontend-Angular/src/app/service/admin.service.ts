@@ -10,7 +10,6 @@ import { getCurrentId, getCurrentUsername } from '../utils/util';
 })
 
 export class AdminService {
-
   constructor(private http: HttpClient) {}
 
   getUserObjectByUsername(){
@@ -34,7 +33,7 @@ export class AdminService {
   }
 
   approveQuestion(id: number) {
-    return this.http.put(BASE_URL + `/updatequestion/${id}/true`, {id : getCurrentId()});
+    return this.http.put(BASE_URL + `/updatequestion/${id}/true/${getCurrentId()}`, { responseType: 'text' });
   }
 
   approveAnswer(id:number) {

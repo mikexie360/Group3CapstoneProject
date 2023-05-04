@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { UserService } from '../service/user.service';
 import { getCurrentUsername, handleErrorResponse, isUserAdmin, isUserLoggedIn } from '../utils/util';
 
+
 @Component({
   selector: 'app-navbar',
   templateUrl: './navbar.component.html',
@@ -19,7 +20,7 @@ export class NavbarComponent implements OnInit {
 
   ngOnInit(): void {
     this.router.events.subscribe(event => {
-      if (event.constructor.name === "NavigationEnd") {
+      if (event.constructor.name) {
         this.isAdmin = isUserAdmin();
         this.isLoggedIn = isUserLoggedIn();
         this.username = getCurrentUsername();

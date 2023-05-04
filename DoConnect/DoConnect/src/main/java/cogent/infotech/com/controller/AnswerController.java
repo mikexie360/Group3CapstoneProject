@@ -19,7 +19,7 @@ import cogent.infotech.com.service.AnswerService;
 import cogent.infotech.com.entity.Answer;
 import cogent.infotech.com.entity.User;
 
-@CrossOrigin
+@CrossOrigin()
 @RestController
 public class AnswerController {
 	

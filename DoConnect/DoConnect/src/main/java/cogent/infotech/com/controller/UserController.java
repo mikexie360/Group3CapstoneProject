@@ -23,7 +23,7 @@ import cogent.infotech.com.entity.User;
 import org.springframework.http.HttpHeaders;
 
 
-@CrossOrigin
+@CrossOrigin()
 @RestController
 public class UserController {
 	
