@@ -11,6 +11,13 @@ mat-grid-tile {
               0 1px 5px 0 rgba(0, 0, 0, 0.12);
 }
 
+.tablechat{
+  /* position: absolute; */
+}
+
 .appchat {
+  /* position: absolute; */
   width:  calc(50%);
+  z-index: 10;
+
 }

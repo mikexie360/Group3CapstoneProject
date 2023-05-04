@@ -6,6 +6,8 @@ import { UserService } from '../service/user.service';
 import { AdminService } from '../service/admin.service';
 import { handleErrorResponse, isUserAdmin, getUserType, isUserLoggedIn } from '../utils/util';
 import { User } from '../constants/constants';
+import { HostListener  } from "@angular/core";
+
 
 const OPEN_CHAT_BUTTON_LABEL = 'Chat';
 
@@ -109,11 +111,11 @@ export class HomeComponent implements OnInit {
           if ( this.search == ''){
 
           } else {
-            const regex = this.search ;
+            const regex = this.search.toLowerCase() ;
             for(let i = 0; i<this.questionList.length; i++){
-              if (!(((this.questionList[i].description_question).match(regex)) 
-                || ((this.questionList[i].title).match(regex))
-                || ((this.questionList[i].topic).match(regex))))
+              if (!(((this.questionList[i].description_question.toLowerCase()).match(regex)) 
+                || ((this.questionList[i].title.toLowerCase()).match(regex))
+                || ((this.questionList[i].topic.toLowerCase()).match(regex))))
                 {
                 this.questionList.splice(i,1);
                 i = i-1;
@@ -131,6 +133,7 @@ export class HomeComponent implements OnInit {
     // }, 500);
 
   }
+
 
   // public trackItem (index: number, item:QuestionType) {
   //   return item.id;;

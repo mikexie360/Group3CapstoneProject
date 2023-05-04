@@ -148,7 +148,9 @@
         <div *ngIf="userList.length === 0" class="d-flex justify-content-center mt-2">
             <span>No users exist</span>
           </div>
-          <table *ngIf="userList.length !== 0" class="table table-dark text-center">
+          <!-- <div cdkDrag> -->
+
+          <table *ngIf="userList.length !== 0" class="table table-dark text-center tablechat">
             <thead>
               <th>Username</th>
               <!-- <th>Name</th> -->
@@ -170,6 +172,7 @@
               </tr>
             </tbody>
           </table>
+          <!-- </div> -->
       </div>
       <div cdkDrag>
         <!-- <div *ngIf="mode == 'chats' && isUserLoggedIn == true" class="example-box"> -->
