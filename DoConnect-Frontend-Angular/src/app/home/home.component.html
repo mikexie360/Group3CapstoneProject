@@ -17,7 +17,6 @@
       <i class="fa {{ (chatbox == 'none') ? 'fa-chevron-up' : 'fa-chevron-down' }}"></i> {{ chatButton }}
     </button>
   </div> -->
-  
   <div class="text-center text-white" style="font-size: 2rem; padding-top: 2rem" *ngIf="isUserLoggedIn == false">
     <p>Welcome to DoConnect!</p>
     <br>
@@ -41,7 +40,7 @@
             <option class='option' *ngFor='let option of topicOptions' [value]="option">{{ option }}</option>
         </select>
         <input [(ngModel)]="search" type="search" class="form-control" placeholder="Search" aria-label="Search" aria-describedby="search-addon" style="border-top-left-radius: 0.5rem; border-bottom-left-radius: 0.5rem; transition: none;" />
-        <button class="btn btn-info text-white" id="search-addon" (click)="onSearch()" (keyup.enter)="onSearch()">Search
+        <button class="btn btn-info text-white" id="search-addon" (click)="onSearch()">Search
             <i class="fa fa-search fa-lg"></i>
         </button>
       </div>
