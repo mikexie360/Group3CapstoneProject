@@ -15,3 +15,9 @@ background: linear-gradient(to top, #FFEDBC, hsl(348, 100%, 84%));
 .appchat {
     width:  calc(50%);
 }
+.chat-button {
+    position: absolute;
+    bottom: 5rem;
+    z-index: 5;
+    right: 2rem;
+}

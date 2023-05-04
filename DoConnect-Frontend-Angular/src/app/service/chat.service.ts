@@ -24,5 +24,12 @@ export class ChatService {
   getChatMessagesList(fromuser:string, touser:string) {
     return this.http.get(BASE_URL + `/chat/getallchatbetweentwousers/${fromuser}/${touser}`);
   }
+
+  addGlobalChat(data: any) {
+    return this.http.post(BASE_URL + '/globalchat/addchat', data);
+  }
+  getGlobalChatMessagesList() {
+    return this.http.get(BASE_URL + `/globalchat/getchat`);
+  }
 }
 

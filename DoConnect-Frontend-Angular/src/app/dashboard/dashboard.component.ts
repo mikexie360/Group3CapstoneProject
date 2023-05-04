@@ -161,5 +161,7 @@ export class DashboardComponent implements OnInit {
       });
     // }
   }
-
+  toggleChatBox() {
+    this.chatbox = this.chatbox === 'block' ? 'none' : 'block';
+  }
 }

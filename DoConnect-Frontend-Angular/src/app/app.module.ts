@@ -22,7 +22,7 @@ import { SecurePipe } from './utils/secure.pipe';
 import { authInterceptorProviders } from './utils/auth.interceptor';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {MatGridListModule} from '@angular/material/grid-list';
-
+import { GlobalChatComponent } from './global-chat/global-chat.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -37,6 +37,7 @@ import {MatGridListModule} from '@angular/material/grid-list';
     ErrorComponent,
     DashboardComponent,
     ChatComponent,
+    GlobalChatComponent,
     SecurePipe
   ],
   imports: [

@@ -1,18 +1,17 @@
 .chatbox {
-    color: black;
+    color: blue;
     height: max(50vh, 450px);
-    width:  calc(100%);
-    background: #ED213A;  /* fallback for old browsers */
-    background: -webkit-linear-gradient(to right, #93291E, #ED213A);  /* Chrome 10-25, Safari 5.1-6 */
-    background: linear-gradient(to right, #e56e61, #f76173); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    width: max(30vw, 300px);
+    background: #667db6;  /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #667db6, #0082c8, #0082c8, #667db6);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #667db6, #0082c8, #0082c8, #667db6); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
     
     padding: 0.5rem;
-    /* position: absolute; */
+    position: absolute;
     bottom: 8rem;
     right: 2rem;
     border-radius: 0.5rem;
     z-index: 5;
-    
   }
   
   .inputbox {
@@ -25,16 +24,16 @@
     border: 1px;
     overflow: auto;
     position: relative;
-    z-index: 10;
   }
   
   .message {
-    background: #333333;  /* fallback for old browsers */
-    background: -webkit-linear-gradient(to top, #dd1818, #333333);  /* Chrome 10-25, Safari 5.1-6 */
-    background: linear-gradient(to top, #d14a4a, #f34444); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+/*
+* Created with https://www.css-gradient.com
+* Gradient link: https://www.css-gradient.com/?c1=2ce642&c2=72dfee&gt=l&gd=dbb
+*/
+    background: #2CE642;
+    background: linear-gradient(0deg, #2CE642, #72DFEE);
     color: black;
-
-    margin-bottom: 0.5rem;
     border-radius: 0.5rem;
     padding: 0.5rem;
     display: flex;

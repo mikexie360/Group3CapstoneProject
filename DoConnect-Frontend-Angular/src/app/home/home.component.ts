@@ -27,7 +27,7 @@ export class HomeComponent implements OnInit {
   topic: string = 'All';
 
   topicOptions: string[] = [ 'All', ...QUESTIONS_TOPICS ];
-  chatbox = 'block';
+  chatbox = 'none';
   userType = getUserType();
   isAdmin: boolean = isUserAdmin();
   isUserLoggedIn: boolean = isUserLoggedIn();

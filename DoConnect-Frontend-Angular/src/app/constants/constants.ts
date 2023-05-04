@@ -87,6 +87,18 @@ export interface chatmessage{
     datetime:string;
 }
 
+export interface globalChatmessage{
+    id:number;
+    fromuser:string;
+    message:string;
+    datetime:string;
+}
+export class globalChatMessageType{
+    fromuser:string = "";
+    message:string = "";
+    datetime:string = "";
+}
+
 export class ChatMessageType{
     fromuser:string="";
     touser:string="";

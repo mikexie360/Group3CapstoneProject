@@ -178,10 +178,18 @@
         <!-- <div *ngIf="mode == 'chats' && isUserLoggedIn == true" class="example-box"> -->
 
         <!-- </div> -->
-        <div *ngIf="mode == 'chats' && isUserLoggedIn == true" [style.display]="chatbox">
+        <div *ngIf="mode == 'chats' && isUserLoggedIn == true">
             <app-chat class="appchat"></app-chat>
         </div>
       </div>
+    </div>
+    <div *ngIf="mode == 'users' || mode == 'answers' || mode == 'questions'">
+      <div [style.display]="chatbox">
+        <app-global-chat></app-global-chat>
+      </div>
+      <button *ngIf="isUserLoggedIn == true" id="chatButton" class="btn btn-primary chat-button" (click)="toggleChatBox()">
+        <i class="fa {{ (chatbox == 'none') ? 'fa-chevron-up' : 'fa-chevron-down' }}"></i> {{ chatButton }}
+      </button>
     </div>
   </div>
   
