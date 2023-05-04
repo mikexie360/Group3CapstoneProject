@@ -11,3 +11,7 @@ background: linear-gradient(to top, #FFEDBC, hsl(348, 100%, 84%));
 /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 
 }
+
+.appchat {
+    width:  calc(50%);
+}
