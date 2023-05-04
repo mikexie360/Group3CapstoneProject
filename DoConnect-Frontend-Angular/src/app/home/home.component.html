@@ -36,6 +36,7 @@
         </button>
       </div>
     </div>
+      <div  *ngIf="mode == 'questions'">
         <select class='select-option' #topicSelect (change)='onTopicSelected(topicSelect.value)' style="border-radius: 0.5rem; margin-right: 1rem;">
             <option class='option' *ngFor='let option of topicOptions' [value]="option">{{ option }}</option>
         </select>
@@ -43,6 +44,7 @@
         <button class="btn btn-info text-white" id="search-addon" (click)="onSearch()">Search
             <i class="fa fa-search fa-lg"></i>
         </button>
+      </div>
     <div class="row pt-2">
       <div *ngIf="mode == 'questions'">
         <div>
