@@ -25,6 +25,9 @@ public class CustomerServiceImpl implements CustomerService {
 	@Autowired
 	private ChatRepository chatRepository;
 	
+	@Autowired
+	private GlobalChatRepository globalChatRepository;
+	
 	@Override
 	public void addChat(Chat chat) {
 		chatRepository.save(chat);
@@ -132,6 +135,10 @@ public class CustomerServiceImpl implements CustomerService {
 	
 	@Override
 	public void deleteById(int id) {
+		String userToDelete = userRepository.getById(id).getUsername();
+		chatRepository.deleteByTouser(userToDelete);
+		chatRepository.deleteByFromuser(userToDelete);
+		globalChatRepository.deleteByFromuser(userToDelete);
 		userRepository.deleteById(id);
 	}
 	

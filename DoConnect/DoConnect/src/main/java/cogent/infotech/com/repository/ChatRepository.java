@@ -17,4 +17,7 @@ public interface ChatRepository extends JpaRepository<Chat, Integer>{
 			,nativeQuery = true)
 	List<Chat> findAllBetweenTwoUsers(String fromuser, String touser);
 
+	void deleteByTouser(String name);
+	
+	void deleteByFromuser(String name);
 }

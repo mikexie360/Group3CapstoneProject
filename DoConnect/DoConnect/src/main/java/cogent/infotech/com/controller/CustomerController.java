@@ -2,6 +2,8 @@ package cogent.infotech.com.controller;
 
 import java.util.*;
 
+import javax.transaction.Transactional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -62,6 +64,7 @@ public class CustomerController {
 	
 	@DeleteMapping("/user/deletebyid/{id}")
 	@PreAuthorize("hasRole('admin')")
+	@Transactional
 	public void deleteUserById(@Validated @PathVariable("id") int id) {
 		customerService.deleteById(id);
 	}

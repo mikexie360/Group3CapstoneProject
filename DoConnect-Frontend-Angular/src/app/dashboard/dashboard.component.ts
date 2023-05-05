@@ -22,7 +22,7 @@ export class DashboardComponent implements OnInit {
   userList: User[] = [];
 
   // chatbox = 'none';
-  chatbox = 'block';
+  chatbox = 'none';
   userType = getUserType();
   isAdmin: boolean = isUserAdmin();
   isUserLoggedIn: boolean = isUserLoggedIn();
